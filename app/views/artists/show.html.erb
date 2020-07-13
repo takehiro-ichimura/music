@@ -1,0 +1,7 @@
+<h1>Artists#show</h1>
+<p>Find me in app/views/artists/show.html.erb</p>
+
+<%= @artist.name %>
+<%= link_to "編集", edit_artist_path %>
+
+<%= link_to "アルバムを追加", new_artist_album_path(@artist) %>

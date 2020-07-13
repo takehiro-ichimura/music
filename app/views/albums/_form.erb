@@ -1,0 +1,20 @@
+<%= form_for [@artist, @album] do |f| %>
+  <% @album.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+  <%= f.label :name, "アルバム名 [必須]" %>
+  <%= f.text_field :name, placeholder:"(例)Some Girls", class: "form-control" %>
+  <%= f.label :othername, "別の読み方(英語、読み仮名、愛称など、カンマ区切り複数)" %>
+  <%= f.text_field :othername, placeholder:"(例)サムガールズ,女たち", class: "form-control" %>
+  <%= f.label :othername, "タグ(ジャンルなど)、カンマ区切り複数" %>
+  <%= f.text_field :tags, placeholder:"(例)ロック,60s,ブルース,パンク", class: "form-control" %>
+  <%= f.label :apple, "WikipediaのURL" %>
+  <%= f.text_field :apple, placeholder:"(例)https://ja.wikipedia.org/wiki/%E5%A5%B3%E3%81%9F%E3%81%A1", class: "form-control" %>
+  <%= f.label :apple, "Apple Musicの埋め込みコード" %>
+  <%= f.text_field :apple, placeholder:"(例)<iframe allow...", class: "form-control" %>
+  <%= f.label :spotify, "Spotifyの埋め込みコード" %>
+  <%= f.text_field :spotify, placeholder:"(例)<iframe src...", class: "form-control" %>
+  <%= f.label :bandcamp, "bandcampの埋め込みコード" %>
+  <%= f.text_field :bandcamp, placeholder:"(例)<iframe style...", class: "form-control" %>
+  <%= f.submit "送信", class:"btn btn-secondary" %>
+<% end %>

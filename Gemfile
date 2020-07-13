@@ -59,3 +59,6 @@ gem 'omniauth-twitter'
 
 gem 'materialize-sass'
 gem 'material_icons' 
+
+gem 'cancancan'
+gem 'rails_admin'
