@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  #get 'albums/show'
-  #get 'albums/create'
   resources :artists
   resources :artists do
     resources :albums

@@ -3,6 +3,9 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   before_action :sign_in_required, only: [:edit, :update, :destroy]
 
+  def index
+  end
+
   def new
     @album = Album.new
   end
@@ -16,6 +19,9 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
 
   def set_artist
@@ -23,7 +29,7 @@ class AlbumsController < ApplicationController
   end
 
   def set_album
-    @artist = Album.find(params[:id])
+    @album = Album.find(params[:id])
   end
 
   def albums_params

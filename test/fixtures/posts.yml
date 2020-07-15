@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  summary: MyString
+  blog_url: MyString
+  public: false
+  comment_flg: false
+  score: 1
+  point: 1
+  content: MyString
+  user: one
+
+two:
+  title: MyString
+  summary: MyString
+  blog_url: MyString
+  public: false
+  comment_flg: false
+  score: 1
+  point: 1
+  content: MyString
+  user: two
