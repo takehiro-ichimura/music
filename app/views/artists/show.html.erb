@@ -1,11 +1,20 @@
-<h1>Artists#show</h1>
-<p>Find me in app/views/artists/show.html.erb</p>
+<h4><%= @artist.name %></h4>
+<% if current_user %>
+  <%= link_to "編集", edit_artist_path %>
+  <%= link_to "アルバムを追加", new_artist_album_path(@artist) %>
+  <%= link_to "このアーティストのブログ/レビューを投稿", "/artists/#{@artist.id}/new" %>
+<% else %>
+  <small>登録/ログインするとレビュー投稿やアーティスト追加ができます。
+<% end %>
 
-<%= @artist.name %>
-<%= link_to "編集", edit_artist_path %>
-
-<%= link_to "アルバムを追加", new_artist_album_path(@artist) %>
+<br />
+アルバム(<%=  @artist.albums.count %>)
 
 <% @artist.albums.each do |album| %>
-  <%= link_to album.name, artist_album_path(@artist, album) %>
+  <h5><%= link_to album.name, artist_album_path(@artist, album) %></h5>
+  レビュー数:<%= album.posts.count %><br />
 <% end %>
+
+<br />
+<br />
+このアーティストについてのレビュー

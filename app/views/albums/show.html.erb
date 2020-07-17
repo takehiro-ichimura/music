@@ -1,4 +1,8 @@
-<h1>Albums#show</h1>
-<p>Find me in app/views/albums/show.html.erb</p>
-
-<%= @album.name %>
+<h4><%= @album.name %></h4>
+<%= link_to "ブログ/レビューを投稿", "/artists/#{@artist.id}/albums/#{@album.id}/new" %>
+<br />
+<% @posts.each do |post| %>
+	<div>
+		<%= link_to post.title, "/artists/#{@artist.id}/albums/#{@album.id}/#{post.id}" %>
+	</div>
+<% end %>

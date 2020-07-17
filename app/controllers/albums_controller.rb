@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :set_artist
   before_action :set_album, only: [:show, :edit, :update, :destroy]
-  before_action :sign_in_required, only: [:edit, :update, :destroy]
+  before_action :sign_in_required, only: [:new, :edit, :update, :destroy]
 
   def index
   end
@@ -20,6 +20,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @posts = @album.posts
   end
 
   private

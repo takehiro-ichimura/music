@@ -62,3 +62,5 @@ gem 'material_icons'
 
 gem 'cancancan'
 gem 'rails_admin'
+
+gem "gretel"

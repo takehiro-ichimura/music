@@ -1,4 +1,7 @@
 class Post < ApplicationRecord
+  validates :title, presence: true
   belongs_to :user
-  has_many :like
+  belongs_to :artist
+  belongs_to :album, optional: true
+  has_many :likes
 end

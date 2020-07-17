@@ -1,8 +1,7 @@
-<h1>Artists#index</h1>
-<p>Find me in app/views/artists/index.html.erb</p>
+<h3>アーティスト一覧</h3>
 
 <% @artists.each do |artist| %>
-    <%= link_to artist.name, artist %>
+    <h5><%= link_to artist.name, artist %></h5>
 <% end %>
 
 <% if current_user %>

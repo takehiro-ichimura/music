@@ -1,0 +1,52 @@
+<h4>
+	<% if @album %>
+		<%= @album.name %> /
+		<% create_path = "/artists/#{@artist.id}/albums/#{@album.id}/create" %>
+	<% else %>
+		<% create_path = "/artists/#{@artist.id}/create" %>
+	<% end %>
+	<%= @artist.name %>
+</h4>
+
+<h5>ブログ登録/レビュー</h5>
+
+<%= form_tag(create_path, method: :post) do %>
+  <% @post.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+	<p>タイトル [必須]</p>
+	<textarea name="title" placeholder="(例)60年代イギリスが産んだ傑作" class="materialize-textarea"><%= @post.title %></textarea>
+	<br/>
+	<p>サマリー (100字以内、任意)</p>
+	<textarea name="summary" placeholder="(例)このアルバムで特筆すべきはビルワイマンの生み出す、唯一無二のグルーブである" class="materialize-textarea"><%= @post.summary %></textarea>
+	<br/>
+	<p>ブログURL(任意)</p>
+	<input name="blog_url" placeholder="(例)http://www...."><%= @post.blog_url %></input>
+	<br/>
+	<p>得点(10点満点、任意)</p>
+	<select name="score" class="browser-default">
+		<option value="nil">-</option>
+		<option value="0">0</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+		<option value="9">9</option>
+		<option value="10">10</option>
+	</select>
+	<p>レビュー(任意)</p>
+	<textarea name="content" class="materialize-textarea"><%= @post.content %></textarea>
+	<input type="hidden" name="public" value="true">
+	<input type="hidden" name="comment_flg" value="true">
+	<input type="hidden" name="user_id" value="<%= current_user.id %>">
+	<% if @album %>
+		<input type="hidden" name="album_id" value="<%= @album.id %>">
+	<% else %>
+		<input type="hidden" name="artist_id" value="<%= @artist.id %>">
+	<% end %>
+	<input type="submit" class="btn" value="投稿">
+<% end %>

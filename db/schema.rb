@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_15_174721) do
+ActiveRecord::Schema.define(version: 2020_07_16_042445) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -68,6 +68,10 @@ ActiveRecord::Schema.define(version: 2020_07_15_174721) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "album_id"
+    t.integer "artist_id", null: false
+    t.index ["album_id"], name: "index_posts_on_album_id"
+    t.index ["artist_id"], name: "index_posts_on_artist_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -104,5 +108,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_174721) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "posts", "albums"
+  add_foreign_key "posts", "artists"
   add_foreign_key "posts", "users"
 end

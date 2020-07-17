@@ -21,6 +21,7 @@ class ArtistsController < ApplicationController
 
   def show
     @albums = @artist.albums
+    @posts = @artist.posts
   end
 
   def edit
