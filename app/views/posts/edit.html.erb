@@ -2,7 +2,15 @@
 	記事編集
 </h4>
 
-<%= form_tag(create_path, method: :post) do %>
+<% if @album %>
+		<%= @album.name %> /
+		<% update_path = "/artists/#{@artist.id}/albums/#{@album.id}/#{@post.id}/update" %>
+	<% else %>
+		<% update_path = "/artists/#{@artist.id}/#{@post.id}/update" %>
+	<% end %>
+	<%= @artist.name %>
+
+<%= form_tag(update_path, method: :post) do %>
   <% @post.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
@@ -30,7 +38,7 @@
 		<option value="9">9</option>
 		<option value="10">10</option>
 	</select>
-	<p>レビュー(任意)</p>
+	<p>レビュー(任意、100字以上)</p>
 	<textarea name="content" class="materialize-textarea"><%= @post.content %></textarea>
 	<input type="hidden" name="public" value="true">
 	<input type="hidden" name="comment_flg" value="true">

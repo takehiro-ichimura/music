@@ -3,18 +3,25 @@
   <%= link_to "編集", edit_artist_path %>
   <%= link_to "アルバムを追加", new_artist_album_path(@artist) %>
   <%= link_to "このアーティストのブログ/レビューを投稿", "/artists/#{@artist.id}/new" %>
-<% else %>
-  <small>登録/ログインするとレビュー投稿やアーティスト追加ができます。
 <% end %>
-
-<br />
-アルバム(<%=  @artist.albums.count %>)
-
-<% @artist.albums.each do |album| %>
-  <h5><%= link_to album.name, artist_album_path(@artist, album) %></h5>
-  レビュー数:<%= album.posts.count %><br />
-<% end %>
-
-<br />
-<br />
-このアーティストについてのレビュー
+<div class="divider"></div>
+<div class="section">
+  <div class="row">
+    <div class="col s12 m6">
+      <h5>アルバム(<%=  @artist.albums.count %>)</h5>
+      <div class="section">
+        <% @artist.albums.each do |album| %>
+          <div class="section">
+            <a href=<%=artist_album_path(@artist, album)%> class="collection-item">
+              <%= album.name %><span class="new badge" data-badge-caption=""><%= album.posts.count %></span>
+            </a>
+          </div>
+          <div class="divider"></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col s12 m6">
+      このアーティストについての記事
+    </div>
+  </div>
+</div>

@@ -1,4 +1,9 @@
-<h1>Artists#edit</h1>
-<p>Find me in app/views/artists/new.html.erb</p>
-
+<h4>アーティスト編集</h4>
+<%= @artist.name %>
+<br />
+<br />
+<%= link_to "アルバムを追加", new_artist_album_path(@artist), class:"btn" %>
+<br />
+<br />
+<div class="divider"></div>
 <%= render 'form' %>

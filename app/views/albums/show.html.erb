@@ -1,8 +1,40 @@
 <h4><%= @album.name %></h4>
-<%= link_to "ブログ/レビューを投稿", "/artists/#{@artist.id}/albums/#{@album.id}/new" %>
+<%= link_to "ブログ/レビューを投稿", "/artists/#{@artist.id}/albums/#{@album.id}/new", class: "btn-small" %>
+
 <br />
-<% @posts.each do |post| %>
-	<div>
-		<%= link_to post.title, "/artists/#{@artist.id}/albums/#{@album.id}/#{post.id}" %>
-	</div>
-<% end %>
+<br />
+<div class="row">
+	<% @posts.each do |post| %>
+    <div class="col s12 m6">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title"><%= post.title %></span>
+					Reviewed by <strong><a href="/users/<%= post.user.id %>"><%= post.user.username %></a></strong>
+          <p><%= post.summary %></p>
+					<p><%= post.score %>/10</p>
+        </div>
+        <div class="card-action">
+					<% if current_user %>
+          	<%= link_to '評価', likes_like_path(post_id: post.id, user_id: current_user.id, return_url: request.original_url) %>
+					<% end %>
+					<a href="#">後で読む</a>
+					<% if post.comment_flg or post.content %>
+						<% if post.content %>
+							<a href=<%= "/artists/#{@artist.id}/albums/#{@album.id}/#{post.id}" %>>レビューを読む</a>
+						<% elsif post.comment %>
+							<a href=<%= "/artists/#{@artist.id}/albums/#{@album.id}/#{post.id}" %>>コメント</a>
+						<% end %>
+					<% end %>
+					<% if post.blog_url %>
+          	<a href="#">ブログを読む</a>
+					<% end %>
+					<% if current_user %>
+						<% if current_user.id == post.user.id %>
+							<a href=<%= "/artists/#{@artist.id}/albums/#{@album.id}/#{post.id}/edit" %>>編集</a>
+						<% end %>
+					<% end %>
+        </div>
+      </div>
+    </div>
+	<% end %>
+</div>

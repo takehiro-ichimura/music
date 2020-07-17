@@ -12,14 +12,16 @@
   </div>
 
   <% if devise_mapping.rememberable? %>
+    <label>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.check_box :remember_me,  class:"filled-in", checked:"checked" %>
+      <span>ログインを記憶</span>
     </div>
+    </label>
   <% end %>
-
+  <br />
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class:"btn" %>
   </div>
 <% end %>
 

@@ -2,11 +2,11 @@
   <% @artist.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
-  <%= f.label :name, "アーティスト名 [必須]" %>
+  <p>アーティスト名 [必須]</p>
   <%= f.text_field :name, placeholder:"(例)The Rolling Stones", class: "form-control" %>
-  <%= f.label :othername, "別の読み方(英語、読み仮名、愛称など、カンマ区切り複数)" %>
+  <p>別の読み方(英語、読み仮名、愛称など、カンマ区切り複数)</p>
   <%= f.text_field :othername, placeholder:"(例)ローリングストーンズ,ストーンズ", class: "form-control" %>
-  <%= f.label :othername, "タグ(ジャンルなど)、カンマ区切り複数" %>
+  <p>タグ(ジャンルなど)、カンマ区切り複数</p>
   <%= f.text_field :tags, placeholder:"(例)ロック,60s,ブルース", class: "form-control" %>
   <%= f.submit "送信", class:"btn btn-secondary" %>
 <% end %>
