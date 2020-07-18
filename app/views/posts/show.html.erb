@@ -1,6 +1,46 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
-
-<%= @post.title %>
-<%= @post.summary %>
-<a href="<%= @post.blog_url %>">ブログを見る</a>
+<p><%= link_to @post.album.name, "/artists/#{@post.artist.id}/albums/#{@post.album.id}" %> / <%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></p>
+<h5><%= @post.summary %></h5>
+<% if @post.score %>
+  <p>スコア: <%= @post.score %>/10</p>
+<% else %>
+  <p class="blue-grey-text">スコア: -/10</p>
+<% end %>
+<h6>Reviewed by <%= link_to @post.user.username, "/users/#{@post.user.id}" %></h6>
+<% if current_user %>
+  <% if current_user.id == @post.user.id %>
+    <a href=<%= "/artists/#{@artist.id}/albums/#{@album.id}/#{@post.id}/edit" %>>編集する</a>
+  <% end %>
+<% end %>
+<div class="divider"></div>
+<p><%= @post.content %></p>
+<br />
+<% if current_user %>
+  <% if current_user.already_liked?(@post) %>
+    <%= link_to '評価済', "/artists/#{@post.artist.id}/albums/#{@post.album.id}/#{@post.id}/unlike", method: :post, return_url: request.original_url, class: "blue-grey btn-small" %>
+  <% else %>
+    <%= link_to '評価⬆︎', "/artists/#{@post.artist.id}/albums/#{@post.album.id}/#{@post.id}/like", method: :post, return_url: request.original_url, class: "btn-small" %>
+  <% end %>
+<% end %>
+<a href="#" class="btn-small blue">後で読む</a>
+<% if @post.blog_url.length != 0 %>
+  <a href="<%= @post.blog_url %>" class="red btn-small">ブログを読む</a>
+<% end %>
+<br />
+<br />
+<% if @post.comment_flg %>
+  <p>コメント欄</p>
+  <div class="divider"></div>
+	<% @post.comments.each do |comment| %>
+    <div class="section">
+      <p><%= comment.text %></p>
+      <small class="left-align">Commented by <%= link_to comment.user.username, "/users/#{comment.user.id}" %></small>
+    </div>
+    <div class="divider"></div>
+	<% end %>
+  <br />
+  <%= form_tag("/artists/#{@post.artist.id}/albums/#{@post.album.id}/#{@post.id}/comment") do %>
+    <textarea name="text" class="materialize-textarea" placeholder="コメント"></textarea>
+    <br/>
+    <input type="submit" value="コメントを投稿" class="btn">
+  <% end %>
+<% end %>

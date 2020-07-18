@@ -16,12 +16,12 @@ class ArtistsController < ApplicationController
   end
 
   def index
-    @artists = Artist.all
+    @artists = Artist.all.order(name: "ASC")
   end
 
   def show
     @albums = @artist.albums
-    @posts = @artist.posts
+    @posts = @artist.posts.order(point: "DESC")
   end
 
   def edit
@@ -33,6 +33,11 @@ class ArtistsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def search
+    @artists = Artist.where("name LIKE ?", "%#{params[:word]}%").or(Artist.where("othername LIKE ?", "%#{params[:word]}%"))
+    @word = params[:word]
   end
   
   private

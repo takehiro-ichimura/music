@@ -1,21 +1,29 @@
 Rails.application.routes.draw do
-  get 'likes/index'
-  root 'artists#index'
+  
+  get "artists/search" => "artists#search"
   resources :artists
   resources :artists do
     resources :albums
   end
+  get 'likes/index'
+  root 'artists#index'
 
   get 'artists/:artist_id/albums/:album_id/new' => 'posts#new'
   get 'artists/:artist_id/albums/:album_id/:id' => 'posts#show'
   post 'artists/:artist_id/albums/:album_id/create' => "posts#create"
+  post 'artists/:artist_id/albums/:album_id/:id/like' => "likes#create"
+  post 'artists/:artist_id/albums/:album_id/:id/unlike' => "likes#destroy"
   get 'artists/:artist_id/albums/:album_id/:id/edit' => 'posts#edit'
   post 'artists/:artist_id/albums/:album_id/:id/update' => "posts#update"
+  post 'artists/:artist_id/albums/:album_id/:id/comment' => "posts#comment"
   get 'artists/:artist_id/new' => 'posts#new'
   get 'artists/:artist_id/:id' => 'posts#show'
   post 'artists/:artist_id/create' => "posts#create"
   get 'artists/:artist_id/:id/edit' => 'posts#edit'
   post 'artists/:artist_id/:id/create' => "posts#create"
+  post 'artists/:artist_id/:id/like' => 'likes#create'
+  post 'artists/:artist_id/:id/unlike' => 'likes#destroy'
+  post 'artists/:artist_id/:id/unlike' => 'likes#comment'
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

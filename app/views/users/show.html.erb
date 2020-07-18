@@ -1,8 +1,53 @@
-<h4><%= @user.username %></h4>
+<h5 class="center-align"><%= @user.username %></h5>
 
 <% if current_user %>
   <% if current_user.id == @user.id %>
     <%= link_to '設定', edit_user_registration_path %>
     <%= link_to "プロフィール編集", "#" %>
   <% end %>
+<% end %>
+<p>投稿一覧</p>
+<% @user.posts.each do |post| %>
+  <div class="col s12 m6">
+    <div class="card">
+      <div class="card-content">
+        <p><% if post.album %><%= link_to post.album.name, artist_album_path(post.artist.id,post.album.id) %>/<% end %><%= link_to post.artist.name, artist_path(post.artist.id) %></p>
+        <br />
+        <span class="card-title"><%= post.summary %></span>
+        <% if post.score %>
+          <div><%= post.score %>/10</div>
+        <% else %>
+          <div class="blue-grey-text">-/10</div>
+        <% end %>
+        <div>Reviewed by <strong><a href="/users/<%= post.user.id %>"><%= post.user.username %></a></strong></div>
+      </div>
+      <div class="card-action">
+        <small>
+          <% if current_user %>
+            <% if current_user.already_liked?(post) %>
+              <%= link_to '評価済', post.post_path + "/unlike", method: :post, return_url: request.original_url, class: "blue-grey-text" %>
+            <% else %>
+              <%= link_to '評価⬆︎', post.post_path + "/like", method: :post, return_url: request.original_url %>
+            <% end %>
+          <% end %>
+          <a href="#">後で読む</a>
+          <% if post.comment_flg or post.content %>
+            <% if post.content.length != 0 %>
+              <a href=<%=  post.post_path %>>レビューを読む</a>
+            <% elsif post.comment_flg %>
+              <a href=<%=  post.post_path %>>コメント</a>
+            <% end %>
+          <% end %>
+          <% if post.blog_url.length != 0 %>
+            <a href="<%= post.blog_url %>" class="red-text">ブログを読む</a>
+          <% end %>
+          <% if current_user %>
+            <% if current_user.id == post.user.id %>
+              <a href=<%=  post.post_path + "/edit" %>>編集</a>
+            <% end %>
+          <% end %>
+        </small>
+      </div>
+    </div>
+  </div>
 <% end %>

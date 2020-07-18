@@ -1,4 +1,4 @@
-<h4>
+<h5>
 	<% if @album %>
 		<%= @album.name %> /
 		<% create_path = "/artists/#{@artist.id}/albums/#{@album.id}/create" %>
@@ -6,7 +6,7 @@
 		<% create_path = "/artists/#{@artist.id}/create" %>
 	<% end %>
 	<%= @artist.name %>
-</h4>
+</h5>
 
 <h5>ブログ登録/レビュー</h5>
 
@@ -14,11 +14,9 @@
   <% @post.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
-	<p>タイトル [必須]</p>
-	<textarea name="title" placeholder="(例)60年代イギリスが産んだ傑作" class="materialize-textarea"><%= @post.title %></textarea>
-	<br/>
-	<p>サマリー (100字以内、任意)</p>
-	<textarea name="summary" placeholder="(例)このアルバムで特筆すべきはビルワイマンの生み出す、唯一無二のグルーブである" class="materialize-textarea"><%= @post.summary %></textarea>
+	<p>サマリー (140字以内) [必須]</p>
+	<textarea name="summary" id="input-text" placeholder="(例)このアルバムで特筆すべきはビルワイマンの生み出す、唯一無二のグルーブである" class="materialize-textarea"><%= @post.summary %></textarea>
+	<small id="counter" class="grey-text">0文字</small>
 	<br/>
 	<p>ブログURL(任意)</p>
 	<input name="blog_url" placeholder="(例)http://www...."><%= @post.blog_url %></input>
@@ -48,5 +46,5 @@
 	<% else %>
 		<input type="hidden" name="artist_id" value="<%= @artist.id %>">
 	<% end %>
-	<input type="submit" class="btn" value="投稿">
+	<input type="submit" class="btn" value="送信">
 <% end %>

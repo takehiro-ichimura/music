@@ -9,12 +9,12 @@
   <p>タグ(ジャンルなど)、カンマ区切り複数(任意)</p>
   <%= f.text_field :tags, placeholder:"(例)ロック,60s,ブルース,パンク", class: "form-control" %>
   <p>WikipediaのURL(任意)</p>
-  <%= f.text_field :apple, placeholder:"(例)https://ja.wikipedia.org/wiki/%E5%A5%B3%E3%81%9F%E3%81%A1", class: "form-control" %>
-  <p>Apple Musicの埋め込みコード(任意)</p>
-  <%= f.text_field :apple, placeholder:"(例)<iframe allow...", class: "form-control" %>
-  <p>Spotifyの埋め込みコード(任意)</p>
-  <%= f.text_field :spotify, placeholder:"(例)<iframe src...", class: "form-control" %>
-  <p>bandcampの埋め込みコード(任意)</p>
-  <%= f.text_field :bandcamp, placeholder:"(例)<iframe style...", class: "form-control" %>
+  <%= f.text_field :wikipedia , placeholder:"(例)https://ja.wikipedia.org/wiki/%E5%A5%B3%E3%81%9F%E3%81%A1", class: "form-control" %>
+  <p>Apple Musicのシェアリンク(任意)</p>
+  <%= f.text_field :apple, placeholder:"(例)https://music.apple.com/...", class: "form-control" %>
+  <p>Spotifyのシェアリンク任意)</p>
+  <%= f.text_field :spotify, placeholder:"(例)https://open.spotify.com/...", class: "form-control" %>
+  <p>bandcampのシェアリンク(任意)</p>
+  <%= f.text_field :bandcamp, placeholder:"(例)http://xxx.bandcamp.com/...", class: "form-control" %>
   <%= f.submit "送信", class:"btn btn-secondary" %>
 <% end %>

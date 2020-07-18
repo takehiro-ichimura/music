@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_042445) do
+ActiveRecord::Schema.define(version: 2020_07_18_134948) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 2020_07_16_042445) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title", null: false
     t.string "summary"
     t.string "blog_url"
     t.boolean "public"
@@ -97,6 +96,11 @@ ActiveRecord::Schema.define(version: 2020_07_16_042445) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.boolean "admin_flg"
+    t.string "profile"
+    t.string "blog_url"
+    t.string "twitter"
+    t.string "apple"
+    t.string "spotify"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

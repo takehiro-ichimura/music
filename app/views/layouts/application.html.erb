@@ -10,13 +10,14 @@
   $(document).ready(function(){
     $('select').formSelect();
   });
+  $(function(){
+    $("#input-text").on("keyup", function() {
+      let countNum = String($(this).val().length);
+      $("#counter").text(countNum + "文字");
+    });
+  });
 </script>
 
-<style>
-  .page-footer {
-    margin-top: 30px;
-  }
-</style>
 <html>
   <head>
     <title>Music</title>
@@ -27,7 +28,31 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   </head>
-  
+  <style>
+  .page-footer {
+    margin-top: 30px;
+  }
+  .card .card-content {
+    padding-top: 8px;
+    padding-right: 14px;
+    padding-bottom: 8px;
+    padding-left: 14px;
+  }
+  .card .card-action {
+    padding: 5px 10px;
+  }
+  .card .card-content .card-title {
+    margin-bottom: 1px;
+    line-height: 18px;
+  }
+  .card .card-title {
+    font-size: 17px;
+}
+  .section {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+  </style>
   <body>
     <header>
       <nav>

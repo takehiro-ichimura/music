@@ -1,27 +1,77 @@
-<h4><%= @artist.name %></h4>
+<h5><%= @artist.name %></h5>
 <% if current_user %>
   <%= link_to "編集", edit_artist_path %>
-  <%= link_to "アルバムを追加", new_artist_album_path(@artist) %>
-  <%= link_to "このアーティストのブログ/レビューを投稿", "/artists/#{@artist.id}/new" %>
 <% end %>
+<br />
+<br />
 <div class="divider"></div>
 <div class="section">
   <div class="row">
-    <div class="col s12 m6">
-      <h5>アルバム(<%=  @artist.albums.count %>)</h5>
+    <div class="col-12">
+      <h6>アルバム(<%=  @artist.albums.count %>)</h6>
       <div class="section">
+        <div class="divider"></div>
         <% @artist.albums.each do |album| %>
           <div class="section">
-            <a href=<%=artist_album_path(@artist, album)%> class="collection-item">
-              <%= album.name %><span class="new badge" data-badge-caption=""><%= album.posts.count %></span>
-            </a>
+            <h6><a href=<%=artist_album_path(@artist, album)%> class="collection-item">
+              <%= album.name %>
+            </a></h6>
+            <% if album.average_score.nan? %>
+              <% average_score = "-" %>
+            <% else %>
+              <% average_score = album.average_score %>
+            <% end %>
+            <small>レビュー数: <%= album.posts.count %> &emsp; スコア: <%= average_score %>/10</small>
           </div>
           <div class="divider"></div>
         <% end %>
       </div>
     </div>
-    <div class="col s12 m6">
-      このアーティストについての記事
+    <br />
+    <div class="col-12">
+      <h6><%= @artist.name %>についてのブログ/レビュー &emsp; <%= link_to "投稿", "/artists/#{@artist.id}/new", class: "btn" %></h6>
+        <% @artist.posts.each do |post| %>
+          <div class="col s12 m6">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title"><%= post.summary %></span>
+                <% if post.score %>
+                  <div><%= post.score %>/10</div>
+                <% else %>
+                  <div class="blue-grey-text">-/10</div>
+                <% end %>
+                <div>Reviewed by <strong><a href="/users/<%= post.user.id %>"><%= post.user.username %></a></strong></div>
+              </div>
+              <div class="card-action">
+                <small>
+                  <% if current_user %>
+                    <% if current_user.already_liked?(post) %>
+                      <%= link_to '評価済', post.post_path + "/unlike", method: :post, return_url: request.original_url, class: "blue-grey-text" %>
+                    <% else %>
+                      <%= link_to '評価⬆︎', post.post_path + "/like", method: :post, return_url: request.original_url %>
+                    <% end %>
+                  <% end %>
+                  <a href="#">後で読む</a>
+                  <% if post.comment_flg or post.content %>
+                    <% if post.content.length != 0 %>
+                      <a href=<%=  post.post_path %>>レビューを読む</a>
+                    <% elsif post.comment_flg %>
+                      <a href=<%=  post.post_path %>>コメント</a>
+                    <% end %>
+                  <% end %>
+                  <% if post.blog_url.length != 0 %>
+                    <a href="<%= post.blog_url %>" class="red-text">ブログを読む</a>
+                  <% end %>
+                  <% if current_user %>
+                    <% if current_user.id == post.user.id %>
+                      <a href=<%=  post.post_path + "/edit" %>>編集</a>
+                    <% end %>
+                  <% end %>
+                </small>
+              </div>
+            </div>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>

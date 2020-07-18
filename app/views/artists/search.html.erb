@@ -1,13 +1,14 @@
-<h5>アーティスト一覧</h5>
+<h5>「<%= @word %>」のアーティスト検索結果</h5>
 <% if current_user %>
   <%= link_to "アーティストを追加", new_artist_path %>
 <% end %>
 <div class="input-field col s6">
   <%= form_tag("/artists/search",:method => 'get') do %>
-    <%= text_field_tag :word, "" ,placeholder: "(例)Beatles" %>
+    <%= text_field_tag :word , @word %>
     <%= submit_tag '検索', :name => nil, class:"btn right" %>
   <% end %>
 </div>
+<p>検索結果</p>
 <% @artists.each do |artist| %>
   <% if artist.average_score.nan? %>
     <% average_score = "-" %>

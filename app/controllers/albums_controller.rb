@@ -19,8 +19,19 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @album.update(albums_params)
+      redirect_to artist_album_path(@artist, @album), notice: "登録完了"
+    else
+      render "new"
+    end
+  end
+
   def show
-    @posts = @album.posts
+    @posts = @album.posts.order(point: "DESC")
   end
 
   private
