@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :sign_in_required, only: [:new, :edit, :update, :destroy]
+  before_action :sign_in_required, only: [:new, :edit, :update, :destroy, :comment]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def ensure_correct_user
