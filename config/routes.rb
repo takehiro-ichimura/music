@@ -10,22 +10,28 @@ Rails.application.routes.draw do
   end
   get 'likes/index'
 
-  get 'artists/:artist_id/albums/:album_id/new' => 'posts#new'
-  get 'artists/:artist_id/albums/:album_id/:id' => 'posts#show'
   post 'artists/:artist_id/albums/:album_id/create' => "posts#create"
   post 'artists/:artist_id/albums/:album_id/:id/like' => "likes#create"
   post 'artists/:artist_id/albums/:album_id/:id/unlike' => "likes#destroy"
+  post 'artists/:artist_id/albums/:album_id/:id/stock' => "stocks#create"
+  post 'artists/:artist_id/albums/:album_id/:id/unstock' => "stocks#destroy"
   get 'artists/:artist_id/albums/:album_id/:id/edit' => 'posts#edit'
   post 'artists/:artist_id/albums/:album_id/:id/update' => "posts#update"
   post 'artists/:artist_id/albums/:album_id/:id/comment' => "posts#comment"
+  post 'artists/:artist_id/albums/:album_id/:id/destroy' => "posts#destroy"
+  get 'artists/:artist_id/albums/:album_id/new' => 'posts#new'
+  get 'artists/:artist_id/albums/:album_id/:id' => 'posts#show'
   get 'artists/:artist_id/new' => 'posts#new'
-  get 'artists/:artist_id/:id' => 'posts#show'
   post 'artists/:artist_id/create' => "posts#create"
+  get 'artists/:artist_id/:id' => 'posts#show'
   get 'artists/:artist_id/:id/edit' => 'posts#edit'
-  post 'artists/:artist_id/:id/create' => "posts#create"
+  post 'artists/:artist_id/:id/update' => "posts#update"
+  post 'artists/:artist_id/:id/destroy' => "posts#destroy"
   post 'artists/:artist_id/:id/like' => 'likes#create'
   post 'artists/:artist_id/:id/unlike' => 'likes#destroy'
-  post 'artists/:artist_id/:id/unlike' => 'likes#comment'
+  post 'artists/:artist_id/:id/stock' => 'stocks#create'
+  post 'artists/:artist_id/:id/unstock' => 'stocks#destroy'
+  post 'artists/:artist_id/:id/comment' => 'likes#comment'
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

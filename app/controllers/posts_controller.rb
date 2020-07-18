@@ -50,11 +50,9 @@ class PostsController < ApplicationController
       if params[:album_id]
         @album = Album.find_by(id: params[:album_id])
         @artist = Artist.find_by(id: params[:artist_id])
-        #render("artists/#{params[:artist_id]}/albums/#{params[:album_id]}/new")
         render :new
       else
         @artist = Artist.find_by(id: params[:artist_id])
-        #render("artists/#{params[:artist_id]}/new")
         render :new
       end
     end
@@ -116,6 +114,20 @@ class PostsController < ApplicationController
     else
       flash[:notice] = "コメント投稿失敗"
       redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def destroy
+    @post = Post.find_by(id: params[:id])
+    if params[:album_id]
+      redirect_path = "/artists/#{params[:artist_id]}/albums/#{params[:album_id]}"
+    else
+      redirect_path = "/artists/#{params[:artist_id]}"
+    end
+    @post.destroy
+    respond_to do |format|
+      format.html { redirect_to redirect_path , notice: '削除しました' }
+      format.json { head :no_content }
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_172032) do
+ActiveRecord::Schema.define(version: 2020_07_18_211824) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -44,6 +44,19 @@ ActiveRecord::Schema.define(version: 2020_07_18_172032) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "following_user_id"
+    t.integer "artist_id"
+    t.integer "album_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["album_id"], name: "index_follows_on_album_id"
+    t.index ["artist_id"], name: "index_follows_on_artist_id"
+    t.index ["following_user_id"], name: "index_follows_on_following_user_id"
+    t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -119,6 +132,10 @@ ActiveRecord::Schema.define(version: 2020_07_18_172032) do
   add_foreign_key "albums", "artists"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "follows", "albums"
+  add_foreign_key "follows", "artists"
+  add_foreign_key "follows", "users"
+  add_foreign_key "follows", "users", column: "following_user_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "albums"

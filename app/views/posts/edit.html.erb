@@ -3,8 +3,10 @@
 <% if @album %>
 	<%= @album.name %> /
 	<% update_path = "/artists/#{@artist.id}/albums/#{@album.id}/#{@post.id}/update" %>
+	<% destroy_path = "/artists/#{@artist.id}/albums/#{@album.id}/#{@post.id}/destroy" %>
 <% else %>
 	<% update_path = "/artists/#{@artist.id}/#{@post.id}/update" %>
+	<% destroy_path = "/artists/#{@artist.id}/#{@post.id}/destroy" %>
 <% end %>
 <%= @artist.name %>
 
@@ -41,3 +43,6 @@
 	<% end %>
 	<input type="submit" class="btn" value="送信">
 <% end %>
+<br />
+<br />
+<%= link_to "投稿を削除", destroy_path, method: :post, class: "btn-small red", data: { confirm: "投稿を削除しますか？(投稿内容、コメントは元に戻せません)" } %>
