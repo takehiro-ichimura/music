@@ -1,0 +1,5 @@
+<% if current_user.already_liked?(post) %>
+  <%= link_to '評価済', post.post_path + "/unlike", method: :post, remote: true, class: "blue-grey-text" %>
+<% else %>
+  <%= link_to '評価⬆︎', post.post_path + "/like", method: :post, remote: true %>
+<% end %>

@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   belongs_to :album, optional: true
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :stocks, dependent: :destroy
   validates :content, presence: false
   def post_path
     if album_id.present?

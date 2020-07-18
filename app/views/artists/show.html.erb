@@ -29,7 +29,7 @@
     </div>
     <br />
     <div class="col-12">
-      <h6><%= @artist.name %>についてのブログ/レビュー &emsp; <%= link_to "投稿", "/artists/#{@artist.id}/new", class: "btn" %></h6>
+      <h6><%= @artist.name %>のブログ/レビュー &emsp; <%= link_to "投稿", "/artists/#{@artist.id}/new", class: "btn" %></h6>
         <% @artist.posts.each do |post| %>
           <div class="col s12 m6">
             <div class="card">
@@ -45,13 +45,11 @@
               <div class="card-action">
                 <small>
                   <% if current_user %>
-                    <% if current_user.already_liked?(post) %>
-                      <%= link_to '評価済', post.post_path + "/unlike", method: :post, return_url: request.original_url, class: "blue-grey-text" %>
-                    <% else %>
-                      <%= link_to '評価⬆︎', post.post_path + "/like", method: :post, return_url: request.original_url %>
-                    <% end %>
+                    <div id="like-<%= post.id %>">
+                      <%= render partial: "like", locals: { post: post } %>
+                    </div>
+                      <a href="#">後で読む</a>
                   <% end %>
-                  <a href="#">後で読む</a>
                   <% if post.comment_flg or post.content %>
                     <% if post.content.length != 0 %>
                       <a href=<%=  post.post_path %>>レビューを読む</a>
