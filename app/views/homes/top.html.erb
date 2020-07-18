@@ -1,37 +1,8 @@
-<h5 class="center-align"><%= @user.username %></h5>
+<p>このサイトの使い方は<a href="/aboutus">こちら</a></p>
 
-<% if current_user %>
-  <% if current_user.id == @user.id %>
-    <%= link_to 'アカウント設定', edit_user_registration_path %>
-    <%= link_to "プロフィール編集", "/users/profile_edit" %>
-    <br />
-  <% end %>
-<% end %>
-<p><%= @user.profile %></p>
-
-<% if @user.blog_url %>
-  <% if @user.blog_url.length != 0 %>
-    <a href="<%= @user.blog_url %>" class="btn">ブログを見る</a>
-  <% end %>
-<% end %>
-<% if @user.twitter %>
-  <% if @user.twitter.length != 0 %>
-    Twitter ID: <%= @user.apple %>
-  <% end %>
-<% end %>
-<% if @user.apple %>
-  <% if @user.apple.length != 0 %>
-    Apple Music ID: <%= @user.apple %>
-  <% end %>
-<% end %>
-<% if @user.spotify %>
-  <% if @user.spotify.length != 0 %>
-    <a href="<%= @user.spotify %>" class="btn">Spotify</a>
-  <% end %>
-<% end %>
+<h5>PICKUP REVIEW</h5>
 <div class="row">
-  <p>投稿一覧</p>
-  <% @user.posts.order(point: "DESC").each do |post| %>
+  <% @posts.each do |post| %>
     <div class="col s12 m6">
       <div class="card">
         <div class="card-content">
@@ -48,11 +19,9 @@
         <div class="card-action">
           <small>
             <% if current_user %>
-              <% if current_user.already_liked?(post) %>
-                <%= link_to '評価済', post.post_path + "/unlike", method: :post, return_url: request.original_url, class: "blue-grey-text" %>
-              <% else %>
-                <%= link_to '評価⬆︎', post.post_path + "/like", method: :post, return_url: request.original_url %>
-              <% end %>
+              <div id="like-<%= post.id %>">
+                <%= render partial: "like", locals: { post: post } %>
+              </div>
             <% end %>
             <a href="#">後で読む</a>
             <% if post.comment_flg or post.content %>

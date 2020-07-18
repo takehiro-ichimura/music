@@ -9,7 +9,7 @@ class LikesController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.point +=  @like.point
     @post.save
-    redirect_back(fallback_location: root_path)
+    #redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -18,6 +18,6 @@ class LikesController < ApplicationController
     @post.point -=  @like.point
     @post.save
     @like.destroy
-    redirect_back(fallback_location: root_path)
+    #redirect_back(fallback_location: root_path)
   end
 end

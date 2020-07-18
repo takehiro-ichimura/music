@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
-  
+  root 'homes#top'
+  get 'terms' => 'homes#terms'
+  get 'contact' => 'homes#contact'
+  get 'aboutus' => 'homes#aboutus'
   get "artists/search" => "artists#search"
   resources :artists
   resources :artists do
     resources :albums
   end
   get 'likes/index'
-  root 'artists#index'
 
   get 'artists/:artist_id/albums/:album_id/new' => 'posts#new'
   get 'artists/:artist_id/albums/:album_id/:id' => 'posts#show'
@@ -29,7 +31,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  get 'users/profile_edit' => 'users#profile_edit'
+  post 'users/profile_update' => 'users#profile_update'
   get 'users/:id' => 'users#show'
   get 'users/' => 'users#index'
 end

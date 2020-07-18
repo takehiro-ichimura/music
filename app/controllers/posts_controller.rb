@@ -114,7 +114,7 @@ class PostsController < ApplicationController
       flash[:notice] = "コメントを投稿しました"
       redirect_back(fallback_location: root_path)
     else
-      flash[:notice] = "コメントを投稿失敗"
+      flash[:notice] = "コメント投稿失敗"
       redirect_back(fallback_location: root_path)
     end
   end

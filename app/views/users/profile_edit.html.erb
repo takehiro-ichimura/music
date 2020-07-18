@@ -1,0 +1,16 @@
+<%= form_with url:"/users/profile_update", local: true do |f| %>
+  <% @user.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+  <p>プロフィール文</p>
+  <%= f.text_field :profile, placeholder:"(例)60年代のロックが好きです!", class: "form-control", value: @user.profile %>
+  <p>ブログURL</p>
+  <%= f.text_field :blog_url, placeholder:"(例)https://...", class: "form-control", value: @user.blog_url %>
+  <p>Twitter ID</p>
+  <%= f.text_field :twitter, placeholder:"(例)@xxxxxx", class: "form-control", value: @user.twitter %>
+  <p>Apple Music ID</p>
+  <%= f.text_field :apple, placeholder:"(例)@xxxxxx", class: "form-control", value: @user.apple %>
+  <p>Spotify シェアリンク</p>
+  <%= f.text_field :spotify, placeholder:"(例)https://...", class: "form-control", value: @user.spotify %>
+  <%= f.submit "送信", class:"btn btn-secondary" %>
+<% end %>

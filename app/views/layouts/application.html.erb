@@ -56,11 +56,11 @@
   <body>
     <header>
       <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper container">
           <a href="/" class="brand-logo left pl-1">オトハブ</a>
           <ul class="right">
             <% if user_signed_in? %>
-              <li><strong><%= link_to current_user.username, root_path %></strong></li>
+              <li><strong><%= link_to current_user.username, "/users/#{current_user.id}" %></strong></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to 'ログイン', new_user_session_path %></li>
