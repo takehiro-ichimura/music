@@ -1,1 +1,2 @@
 $("#stock-<%= @post.id %>").html("<%= j(render partial: 'homes/stock', locals: { post: @post }) %>");
+$("#stockbtn-<%= @post.id %>").html("<%= j(render partial: 'posts/stockbtn', locals: { post: @post }) %>");

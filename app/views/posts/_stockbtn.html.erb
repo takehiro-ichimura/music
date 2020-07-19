@@ -1,0 +1,5 @@
+<% if current_user.already_stocked?(post) %>
+  <%= link_to '追加中', post.post_path + "unstock", method: :post, remote: true, class: "blue-grey btn-small" %>
+<% else %>
+  <%= link_to '後で読む', post.post_path + "stock", method: :post, remote: true, class: "btn-small blue" %>
+<% end %>

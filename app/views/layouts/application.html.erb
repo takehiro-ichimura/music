@@ -20,7 +20,7 @@
 
 <html>
   <head>
-    <title>Music</title>
+    <title>オトハブ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -52,6 +52,9 @@
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
   }
+  .card .card-action a:not(.btn):not(.btn-small):not(.btn-large):not(.btn-large):not(.btn-floating) {
+    margin-right: 14px;
+    }
   </style>
   <body>
     <header>
@@ -78,8 +81,9 @@
       <div class="container">
         <div class="row">
           <div class="col l4 offset-l2 s12">
-              <a class="grey-text text-lighten-3" href="#!">Link 1</a>
-              <a class="grey-text text-lighten-3" href="#!">Link 2</a>
+              <a class="grey-text text-lighten-3" href="/aboutus">使い方</a>
+              <a class="grey-text text-lighten-3" href="/terms">利用規約</a>
+              <a class="grey-text text-lighten-3" href="/contact">お問い合わせ</a>
           </div>
         </div>
       </div>
