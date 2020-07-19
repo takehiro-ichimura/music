@@ -9,7 +9,7 @@
 <% else %>
   <% average_score = @artist.average_score %>
 <% end %>
-<p>スコア: <%= average_score %>/10 &emsp;
+<p>Score: <%= average_score %>/10 &emsp;
   <% if current_user %>
     <%= link_to "編集", edit_artist_path %>
   <% end %>
@@ -39,7 +39,7 @@
             <% else %>
               <% average_score = album.average_score %>
             <% end %>
-            <small>レビュー数: <%= album.posts.count %> &emsp; スコア: <%= average_score %>/10</small>
+            <small>レビュー数: <%= album.posts.count %> &emsp; Score: <%= average_score %>/10</small>
           </div>
           <div class="divider"></div>
         <% end %>

@@ -9,7 +9,7 @@
 <% else %>
 	<% average_score = @album.average_score %>
 <% end %>
-<p>スコア: <%= average_score %>/10 &emsp;
+<p>Score: <%= average_score %>/10 &emsp;
 <% if current_user %>
 	<%= link_to "編集", "/artists/#{@artist.id}/albums/#{@album.id}/edit" %>
 <% end %>

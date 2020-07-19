@@ -7,11 +7,12 @@
 
   <div class="col s12">
     <% if @post.score %>
-      <span class="right">スコア: <%= @post.score %>/10</span>
+      <span class="right">Score: <%= @post.score %>/10</span>
     <% else %>
-      <span class="blue-grey-text right">スコア: -/10</span>
+      <span class="blue-grey-text right">Score: -/10</span>
     <% end %> 
   </div>
+  <br />
   <h5><%= @post.summary %></h5>
   <div class="col s12">
     <% if current_user %>

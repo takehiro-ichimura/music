@@ -3,7 +3,7 @@
 	<div class="card-content">
 		<p><% if post.album %><%= link_to post.album.name, artist_album_path(post.artist.id,post.album.id) %><br />/<% end %><%= link_to post.artist.name, artist_path(post.artist.id) %></p>
 		<% if post.score %>
-			<div class="right-align">スコア: <%= post.score %>/10</div>
+			<div class="right-align">Score: <%= post.score %>/10</div>
 		<% else %>
 			<br />
 		<% end %>
