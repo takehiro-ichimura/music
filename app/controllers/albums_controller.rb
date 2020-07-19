@@ -36,10 +36,12 @@ class AlbumsController < ApplicationController
 
   def all_index
     @albums = Album.all
+    @albums = @albums.page(params[:page]).per(20)
   end
 
   def search
     @albums = Album.where("name LIKE ?", "%#{params[:word]}%").or(Album.where("othername LIKE ?", "%#{params[:word]}%"))
+    @albums = @albums.page(params[:page]).per(20)
     @word = params[:word]
   end
 

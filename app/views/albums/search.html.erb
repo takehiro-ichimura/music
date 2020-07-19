@@ -1,20 +1,2 @@
 <h5>「<%= @word %>」のアルバム検索結果</h5>
-<div class="input-field col s6">
-  <%= form_tag("/albums/search",:method => 'get') do %>
-    <%= text_field_tag :word, "" ,placeholder: "(例)Abbey Road" %>
-    <%= submit_tag '検索', :name => nil, class:"btn right" %>
-  <% end %>
-</div>
-<% @albums.each do |album| %>
-  <% if album.average_score.nan? %>
-    <% average_score = "-" %>
-  <% else %>
-    <% average_score = album.average_score %>
-  <% end %>
-  <% artist = album.artist %>
-  <div class="section">
-    <h6><%= link_to album.name, artist_album_path(artist, album) %> / <%= link_to artist.name, artist %></h6><small>記事数: <%= artist.posts.count %>  スコア: <%= average_score %>/10</small>
-    
-  </div>
-  <div class="divider"></div>
-<% end %>
+<%= render 'album_result'%>

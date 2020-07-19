@@ -5,7 +5,14 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @posts = @posts.all.order(created_at: :desc)
-    @posts = @posts.page(params[:page]).per(8)
+    @posts = @posts.page(params[:page]).per(10)
+  end
+
+  def search
+    @word = params[:word]
+    @posts = Post.where("summary LIKE ?", "%#{params[:word]}%").or(Post.where("content LIKE ?", "%#{params[:word]}%"))
+    @posts = @posts.all.order(created_at: :desc)
+    @posts = @posts.page(params[:page]).per(10)
   end
 
   def ensure_correct_user

@@ -17,6 +17,7 @@ class ArtistsController < ApplicationController
 
   def index
     @artists = Artist.all.order(name: "ASC")
+    @artists = @artists.page(params[:page]).per(20)
   end
 
   def show
@@ -37,6 +38,7 @@ class ArtistsController < ApplicationController
 
   def search
     @artists = Artist.where("name LIKE ?", "%#{params[:word]}%").or(Artist.where("othername LIKE ?", "%#{params[:word]}%"))
+    @artists = @artists.page(params[:page]).per(20)
     @word = params[:word]
   end
   

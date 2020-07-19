@@ -2,21 +2,4 @@
 <% if current_user %>
   <%= link_to "アーティストを追加", new_artist_path %>
 <% end %>
-<div class="input-field col s6">
-  <%= form_tag("/artists/search",:method => 'get') do %>
-    <%= text_field_tag :word, "" ,placeholder: "(例)Beatles" %>
-    <%= submit_tag '検索', :name => nil, class:"btn right" %>
-  <% end %>
-</div>
-<% @artists.each do |artist| %>
-  <% if artist.average_score.nan? %>
-    <% average_score = "-" %>
-  <% else %>
-    <% average_score = artist.average_score %>
-  <% end %>
-  <div class="section">
-    <h6><%= link_to artist.name, artist %></h6><small>記事数: <%= artist.posts.count %>  スコア: <%= average_score %>/10</small>
-    
-  </div>
-  <div class="divider"></div>
-<% end %>
+<%= render 'artist_result'%>

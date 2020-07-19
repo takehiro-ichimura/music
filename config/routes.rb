@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get 'albums/' => 'albums#all_index'
   get 'albums/search' => 'albums#search'
 
+  get 'posts' => 'posts#index'
+  get 'posts/search' => 'posts#search'
+
   post 'artists/:artist_id/albums/:album_id/create' => "posts#create"
   post 'artists/:artist_id/albums/:album_id/:id/like' => "likes#create"
   post 'artists/:artist_id/albums/:album_id/:id/unlike' => "likes#destroy"
