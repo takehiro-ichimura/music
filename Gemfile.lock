@@ -292,6 +292,7 @@ DEPENDENCIES
   devise-i18n-views
   gretel
   jbuilder (~> 2.7)
+  kaminari
   listen (~> 3.2)
   material_icons
   materialize-sass

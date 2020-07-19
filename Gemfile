@@ -75,3 +75,5 @@ gem 'devise-i18n-views'
 gem 'rails-i18n'
 
 gem 'rinku'
+
+gem 'kaminari'

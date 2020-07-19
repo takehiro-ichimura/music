@@ -2,6 +2,12 @@ class PostsController < ApplicationController
   before_action :sign_in_required, only: [:new, :edit, :update, :destroy, :comment]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
+  def index
+    @posts = Post.all
+    @posts = @posts.all.order(created_at: :desc)
+    @posts = @posts.page(params[:page]).per(8)
+  end
+
   def ensure_correct_user
     if current_user.id != Post.find_by(id: params[:id]).user_id
       redirect_to("/")
