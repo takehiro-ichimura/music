@@ -1,3 +1,8 @@
+<script>
+	$(document).ready(function() {
+    	$('textarea#textarea2').characterCounter();
+  	});
+</script>
 <h5>記事編集</h5>
 
 <% if @album %>
@@ -32,7 +37,7 @@
 			<% end %>
 		<% end %>
 	</select>
-	<p>レビュー(任意、100字以上)</p>
+	<p>レビュー本文(任意、100字以上)</p>
 	<textarea name="content" class="materialize-textarea"><%= @post.content %></textarea>
 	<input type="hidden" name="public" value="true">
 	<input type="hidden" name="comment_flg" value="true">
