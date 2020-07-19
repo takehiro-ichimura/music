@@ -10,6 +10,7 @@
     <% if current_user.id == @user.id %>
       <%= link_to 'アカウント設定', edit_user_registration_path %>
       <%= link_to "プロフィール編集", "/users/profile_edit" %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
       <br />
     <% end %>
   <% end %>

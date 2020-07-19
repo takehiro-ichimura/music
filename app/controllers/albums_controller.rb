@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :set_artist
+  before_action :set_artist, except: [:all_index, :search]
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   before_action :sign_in_required, only: [:new, :edit, :update, :destroy]
 
@@ -32,6 +32,15 @@ class AlbumsController < ApplicationController
 
   def show
     @posts = @album.posts.order(point: "DESC")
+  end
+
+  def all_index
+    @albums = Album.all
+  end
+
+  def search
+    @albums = Album.where("name LIKE ?", "%#{params[:word]}%").or(Album.where("othername LIKE ?", "%#{params[:word]}%"))
+    @word = params[:word]
   end
 
   private

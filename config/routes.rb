@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :albums
   end
   get 'likes/index'
+  get 'albums/' => 'albums#all_index'
+  get 'albums/search' => 'albums#search'
 
   post 'artists/:artist_id/albums/:album_id/create' => "posts#create"
   post 'artists/:artist_id/albums/:album_id/:id/like' => "likes#create"
@@ -31,7 +33,7 @@ Rails.application.routes.draw do
   post 'artists/:artist_id/:id/unlike' => 'likes#destroy'
   post 'artists/:artist_id/:id/stock' => 'stocks#create'
   post 'artists/:artist_id/:id/unstock' => 'stocks#destroy'
-  post 'artists/:artist_id/:id/comment' => 'likes#comment'
+  post 'artists/:artist_id/:id/comment' => 'posts#comment'
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

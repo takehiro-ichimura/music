@@ -15,8 +15,9 @@
     <%= message %>
   <% end %>
 	<p>サマリー (140字以内) [必須]</p>
-	<textarea name="summary" placeholder="(例)このアルバムで特筆すべきはビルワイマンの生み出す、唯一無二のグルーブである" class="materialize-textarea"><%= @post.summary %></textarea>
-	<br/>
+	<div class="input-field col s6">
+		<textarea name="summary" placeholder="(例)このアルバムで特筆すべきはビルワイマンの生み出す、唯一無二のグルーブである" id="textarea2" class="materialize-textarea" data-length="140"><%= @post.summary %></textarea>
+	</div>
 	<p>ブログURL(任意)</p>
 	<textarea name="blog_url" placeholder="(例)http://www...." class="materialize-textarea"><%= @post.blog_url %></textarea>
 	<br/>
@@ -38,9 +39,8 @@
 	<input type="hidden" name="user_id" value="<%= current_user.id %>">
 	<% if @album %>
 		<input type="hidden" name="album_id" value="<%= @album.id %>">
-	<% else %>
-		<input type="hidden" name="artist_id" value="<%= @artist.id %>">
 	<% end %>
+	<input type="hidden" name="artist_id" value="<%= @artist.id %>">
 	<input type="submit" class="btn" value="送信">
 <% end %>
 <br />

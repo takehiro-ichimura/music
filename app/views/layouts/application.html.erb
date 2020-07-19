@@ -16,6 +16,10 @@
       $("#counter").text(countNum + "文字");
     });
   });
+  $(document).ready(function() {
+    $('textarea#textarea2').characterCounter();
+  });
+        
 </script>
 
 <html>
@@ -29,6 +33,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   </head>
   <style>
+  body {
+    word-break: break-all;
+  }
   .page-footer {
     margin-top: 30px;
   }
@@ -64,7 +71,6 @@
           <ul class="right">
             <% if user_signed_in? %>
               <li><strong><%= link_to current_user.username, "/users/#{current_user.id}" %></strong></li>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to 'ログイン', new_user_session_path %></li>
             <% end %>
@@ -76,7 +82,16 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>
+      <br />
+      <div class="row">
+        <br />
+        <%= link_to :back do %>
+          <button class="btn grey left">戻る</button>
+        <% end %>
+        <input type="button" value="再読み込み" class="btn grey right" onclick="window.location.reload();" />
+      </div>
     </div>
+    
     <footer class="page-footer">
       <div class="container">
         <div class="row">

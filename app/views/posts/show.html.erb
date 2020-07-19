@@ -1,5 +1,10 @@
  <div class="row">
-  <h6><%= link_to @post.album.name, "/artists/#{@post.artist.id}/albums/#{@post.album.id}" %> / <%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
+  <% if @album %>
+    <h6><%= link_to @post.album.name, "/artists/#{@post.artist.id}/albums/#{@post.album.id}" %> / <%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
+  <% else %>
+    <h6><%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
+  <% end %>
+
   <div class="col s12">
     <% if @post.score %>
       <span class="right">スコア: <%= @post.score %>/10</span>
@@ -11,7 +16,11 @@
   <div class="col s12">
     <% if current_user %>
       <% if current_user.id == @post.user.id %>
-        <a href=<%= "/artists/#{@artist.id}/albums/#{@album.id}/#{@post.id}/edit" %> class="right">編集する</a>
+        <% if @album %>
+          <a href=<%= "/artists/#{@artist.id}/albums/#{@album.id}/#{@post.id}/edit" %> class="right">編集する</a>
+        <% else %>
+          <a href=<%= "/artists/#{@artist.id}/#{@post.id}/edit" %> class="right">編集する</a>
+        <% end %>
       <% end %>
     <% end %>
   </div>
@@ -20,7 +29,7 @@
   </div>
   <div class="col s12">
     <div class="divider"></div>
-    <p><%= @post.content %></p>
+    <p><%= raw Rinku.auto_link(simple_format(@post.content), :all, 'target="_blank"') %></p>
     <br />
     <% if current_user %>
       <div id="likebtn-<%= @post.id %>" style="float:left;">
@@ -46,14 +55,23 @@
       <p>コメント欄</p>
       <div class="divider"></div>
       <% @post.comments.each do |comment| %>
-        <div class="section">
-          <p><%= comment.text %></p>
-          <small class="left-align">Commented by <%= link_to comment.user.username, "/users/#{comment.user.id}" %></small>
+        <div class="row">
+          <div class="col s12">
+            <p><%= comment.text %></p>
+          </div>
+          <div class="col s12">
+            <small class="right">Commented by <%= link_to comment.user.username, "/users/#{comment.user.id}" %></small>
+          </div>
         </div>
         <div class="divider"></div>
       <% end %>
       <br />
-      <%= form_tag("/artists/#{@post.artist.id}/albums/#{@post.album.id}/#{@post.id}/comment") do %>
+      <% if @album %>
+        <% comment_path = "/artists/#{@post.artist.id}/albums/#{@post.album.id}/#{@post.id}/comment" %>
+      <% else %>
+        <% comment_path = "/artists/#{@post.artist.id}/#{@post.id}/comment" %>
+      <% end %>
+      <%= form_tag(comment_path) do %>
         <textarea name="text" class="materialize-textarea" placeholder="コメント"></textarea>
         <br/>
         <input type="submit" value="コメントを投稿" class="btn">
