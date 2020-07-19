@@ -6,12 +6,16 @@
 
 <h5 class="center-align"><%= @user.username %></h5>
 <div class="center">
-<% if current_user %>
+  <% if current_user %>
     <% if current_user.id == @user.id %>
       <%= link_to 'アカウント設定', edit_user_registration_path %>
       <%= link_to "プロフィール編集", "/users/profile_edit" %>
       <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
       <br />
+    <% else %>
+      <div id="follow-user-<%= @user.id %>">
+        <%= render partial: "follow", locals: { user: @user } %>
+      </div>
     <% end %>
   <% end %>
 </div>
@@ -56,7 +60,13 @@
           <li class="tab col s3"><a href="#test4">投稿</a></li>
         </ul>
       </div>
-      <div id="test1" class="col s12"></div>
+      <div id="test1" class="col s12">
+        <% tl_posts = Post.where(user_id: current_user.following_user_ids).or(Post.where(artist_id: current_user.following_artist_ids).or(Post.where(album_id: current_user.following_album_ids).or(Post.where(user_id: current_user.id)))) %>
+        <% tl_posts = tl_posts.order(created_at: :desc) %>
+        <% tl_posts.each do |post| %>
+          <%= render partial: "card", locals: { post: post } %>
+        <% end %>
+      </div>
       <div id="test2" class="col s12">
         <% Stock.where(user_id: current_user.id).order(created_at: :desc).each do |stock| %>
           <% post = stock.post %>

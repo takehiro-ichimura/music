@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :edit, :update, :destroy]
+  before_action :set_artist, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
   before_action :sign_in_required, only: [:edit, :update, :destroy]
 
   def new
@@ -17,7 +17,7 @@ class ArtistsController < ApplicationController
 
   def index
     @artists = Artist.all.order(name: "ASC")
-    @artists = @artists.page(params[:page]).per(20)
+    @artists = @artists.page(params[:page]).per(50)
   end
 
   def show
@@ -38,8 +38,18 @@ class ArtistsController < ApplicationController
 
   def search
     @artists = Artist.where("name LIKE ?", "%#{params[:word]}%").or(Artist.where("othername LIKE ?", "%#{params[:word]}%"))
-    @artists = @artists.page(params[:page]).per(20)
+    @artists = @artists.page(params[:page]).per(50)
     @word = params[:word]
+  end
+
+  def follow
+    @follow = Follow.new(user_id: current_user.id, artist_id: @artist.id)
+    @follow.save
+  end
+
+  def unfollow
+    @follow = Follow.find_by(user_id: current_user.id, artist_id: @artist.id)
+    @follow.destroy
   end
   
   private

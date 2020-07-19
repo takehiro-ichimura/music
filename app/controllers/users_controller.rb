@@ -17,4 +17,16 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
   end
+
+  def follow
+    @user = User.find_by(id: params[:id])
+    @follow = Follow.new(user_id: current_user.id, following_user_id: params[:id])
+    @follow.save
+  end
+
+  def unfollow
+    @user = User.find_by(id: params[:id])
+    @follow = Follow.find_by(user_id: current_user.id, following_user_id: params[:id])
+    @follow.destroy
+  end
 end

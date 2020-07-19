@@ -1,0 +1,5 @@
+<% if current_user.already_album_followed?(album) %>
+  <%= link_to 'フォロー中', "/artists/#{album.artist.id}/albums/#{album.id}/unfollow", method: :post, remote: true, class: "blue-grey-text" %>
+<% else %>
+  <%= link_to 'フォロー', "/artists/#{album.artist.id}/albums/#{album.id}/follow", method: :post, remote: true, class: "blue-text" %>
+<% end %>

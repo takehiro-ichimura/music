@@ -4,10 +4,13 @@ Rails.application.routes.draw do
   get 'contact' => 'homes#contact'
   get 'aboutus' => 'homes#aboutus'
   get "artists/search" => "artists#search"
+  post 'artists/:id/follow' => 'artists#follow'
+  post 'artists/:id/unfollow' => 'artists#unfollow'
   resources :artists
   resources :artists do
     resources :albums
   end
+
   get 'likes/index'
   get 'albums/' => 'albums#all_index'
   get 'albums/search' => 'albums#search'
@@ -26,6 +29,8 @@ Rails.application.routes.draw do
   post 'artists/:artist_id/albums/:album_id/:id/destroy' => "posts#destroy"
   get 'artists/:artist_id/albums/:album_id/new' => 'posts#new'
   get 'artists/:artist_id/albums/:album_id/:id' => 'posts#show'
+  post 'artists/:artist_id/albums/:id/follow' => 'albums#follow'
+  post 'artists/:artist_id/albums/:id/unfollow' => 'albums#unfollow'
   get 'artists/:artist_id/new' => 'posts#new'
   post 'artists/:artist_id/create' => "posts#create"
   get 'artists/:artist_id/:id' => 'posts#show'
@@ -44,6 +49,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get 'users/profile_edit' => 'users#profile_edit'
   post 'users/profile_update' => 'users#profile_update'
+  post 'users/:id/follow' => 'users#follow'
+  post 'users/:id/unfollow' => 'users#unfollow'
   get 'users/:id' => 'users#show'
-  get 'users/' => 'users#index'
+  get 'users' => 'users#index'
 end

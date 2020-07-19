@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_artist, except: [:all_index, :search]
-  before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :set_album, only: [:show, :edit, :update, :destroy, :follow, :unfollow]
   before_action :sign_in_required, only: [:new, :edit, :update, :destroy]
 
   def index
@@ -36,13 +36,23 @@ class AlbumsController < ApplicationController
 
   def all_index
     @albums = Album.all
-    @albums = @albums.page(params[:page]).per(20)
+    @albums = @albums.page(params[:page]).per(50)
   end
 
   def search
     @albums = Album.where("name LIKE ?", "%#{params[:word]}%").or(Album.where("othername LIKE ?", "%#{params[:word]}%"))
-    @albums = @albums.page(params[:page]).per(20)
+    @albums = @albums.page(params[:page]).per(50)
     @word = params[:word]
+  end
+
+  def follow
+    @follow = Follow.new(user_id: current_user.id, album_id: @album.id)
+    @follow.save
+  end
+
+  def unfollow
+    @follow = Follow.find_by(user_id: current_user.id, album_id: @album.id)
+    @follow.destroy
   end
 
   private

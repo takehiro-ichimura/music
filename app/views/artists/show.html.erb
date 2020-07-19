@@ -1,4 +1,9 @@
 <h5><%= @artist.name %></h5>
+<% if current_user %>
+  <div id="follow-artist-<%= @artist.id %>">
+    <%= render partial: "follow", locals: { artist: @artist } %>
+  </div>
+<% end %>
 <% if @artist.average_score.nan? %>
   <% average_score = "-" %>
 <% else %>
