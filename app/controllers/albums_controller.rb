@@ -35,7 +35,7 @@ class AlbumsController < ApplicationController
   end
 
   def all_index
-    @albums = Album.all
+    @albums = Album.all.order(name: :asc)
     @albums = @albums.page(params[:page]).per(50)
   end
 

@@ -7,15 +7,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script>
-  $(document).ready(function(){
-    $('select').formSelect();
-  });
-  $(function(){
-    $("#input-text").on("keyup", function() {
-      let countNum = String($(this).val().length);
-      $("#counter").text(countNum + "文字");
-    });
-  }); 
+  function goBack() {
+    window.history.back();
+  }
+  function reLoad() {
+    window.location.reload();
+  }
 </script>
 
 <html>
@@ -58,10 +55,36 @@
   }
   .card .card-action a:not(.btn):not(.btn-small):not(.btn-large):not(.btn-large):not(.btn-floating) {
     margin-right: 14px;
-    }
+  }
+  .dropdown-content li > a, .dropdown-content li > span {
+    font-size: 13px;
+    color: #00C853;
+    display: block;
+    line-height: 20px;
+    padding: 14px 16px;
+  }
   </style>
+  <script>
+    $(".dropdown-trigger").dropdown();
+  </script>
   <body>
     <header>
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href='/'>TOP</a></li>
+        <% if user_signed_in? %>
+          <li><a href="/users/<%= current_user.id %>">マイページ</a></li>
+        <% end %>
+        <li><a href='/artists'>アーティスト</a></li>
+        <li><a href="/albums">アルバム</a></li>
+        <li><a href="/posts">新着投稿</a></li>
+        <% if user_signed_in? %>
+          <li class="divider"></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li class="divider"></li>
+          <li><a href="/users/sign_in">ログイン</a></li>
+        <% end %>
+      </ul>
       <nav>
         <div class="nav-wrapper container">
           <a href="/" class="brand-logo left pl-1">オトハブ</a>
@@ -71,6 +94,7 @@
             <% else %>
               <li><%= link_to 'ログイン', new_user_session_path %></li>
             <% end %>
+            <li><a class="dropdown-trigger" data-target="dropdown1">MENU<i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
       </nav>
@@ -82,10 +106,8 @@
       <br />
       <div class="row">
         <br />
-        <%= link_to :back do %>
-          <button class="btn grey left">戻る</button>
-        <% end %>
-        <input type="button" value="再読み込み" class="btn grey right" onclick="window.location.reload();" />
+        <button onclick="goBack()" class="btn grey left">戻る</button>
+        <input type="button" value="再読み込み" class="btn grey right" onclick="reLoad()" />
       </div>
     </div>
     
@@ -107,3 +129,16 @@
     </footer>
   </body>
 </html>
+
+<script>
+  $(document).ready(function(){
+    $('select').formSelect();
+    $(".dropdown-trigger").dropdown();
+  });
+  $(function(){
+    $("#input-text").on("keyup", function() {
+      let countNum = String($(this).val().length);
+      $("#counter").text(countNum + "文字");
+    });
+  }); 
+</script>
