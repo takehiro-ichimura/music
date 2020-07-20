@@ -64,26 +64,26 @@
         <% tl_posts = Post.where(user_id: current_user.following_user_ids).or(Post.where(artist_id: current_user.following_artist_ids).or(Post.where(album_id: current_user.following_album_ids).or(Post.where(user_id: current_user.id)))) %>
         <% tl_posts = tl_posts.order(created_at: :desc) %>
         <% tl_posts.each do |post| %>
-          <%= render partial: "card", locals: { post: post } %>
+          <%= render partial: "card", locals: { post: post, tab: 1 } %>
         <% end %>
       </div>
       <div id="test2" class="col s12">
         <% Stock.where(user_id: current_user.id).order(created_at: :desc).each do |stock| %>
           <% post = stock.post %>
-          <%= render partial: "card", locals: { post: post } %>
+          <%= render partial: "card", locals: { post: post, tab: 2 } %>
         <% end %>
       </div>
       <div id="test3" class="col s12">
         <% Like.where(user_id: current_user.id).order(created_at: :desc).each do |like| %>
           <% post = like.post %>
-          <%= render partial: "card", locals: { post: post } %>
+          <%= render partial: "card", locals: { post: post, tab: 3 } %>
         <% end %>
       </div>
     <% end %>
   <% end %>
   <div id="test4" class="col s12">
     <% @user.posts.order(point: "DESC").each do |post| %>
-      <%= render partial: "card", locals: { post: post } %>
+      <%= render partial: "card", locals: { post: post, tab: 4 } %>
     <% end %>
   </div>
 </div>

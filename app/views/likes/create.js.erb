@@ -1,2 +1,6 @@
 $("#like-<%= @post.id %>").html("<%= j(render partial: 'homes/like', locals: { post: @post }) %>");
 $("#likebtn-<%= @post.id %>").html("<%= j(render partial: 'posts/likebtn', locals: { post: @post }) %>");
+$("#like-<%= @post.id %>-tab1").html("<%= j(render partial: 'homes/like', locals: { post: @post }) %>");
+$("#like-<%= @post.id %>-tab2").html("<%= j(render partial: 'homes/like', locals: { post: @post }) %>");
+$("#like-<%= @post.id %>-tab3").html("<%= j(render partial: 'homes/like', locals: { post: @post }) %>");
+$("#like-<%= @post.id %>-tab4").html("<%= j(render partial: 'homes/like', locals: { post: @post }) %>");
