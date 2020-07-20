@@ -1,5 +1,5 @@
 <% if current_user.already_artist_followed?(artist) %>
-  <%= link_to 'フォロー中', "/artists/#{artist.id}/unfollow", method: :post, remote: true, class: "blue-grey-text" %>
+  <%= link_to 'フォロー中', "/artists/#{artist.id}/unfollow", method: :post, remote: true, class: "btn-flat mini-btn blue white-text" %>
 <% else %>
   <%= link_to 'フォロー', "/artists/#{artist.id}/follow", method: :post, remote: true, class: "blue-text" %>
 <% end %>
