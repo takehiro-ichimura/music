@@ -96,10 +96,10 @@
         <li><a href="/posts">新着投稿</a></li>
         <% if user_signed_in? %>
           <li class="divider"></li>
-          <li><a href="/users/<%= current_user.id %>" class="orange-text">マイページ</a></li>
+          <li><a href="/users/<%= current_user.id %>" class="red-text">マイページ</a></li>
         <% else %>
           <li class="divider"></li>
-          <li><a href="/users/sign_in">ログイン</a></li>
+          <li><a href="/users/sign_in" class="orange-text">ログイン</a></li>
         <% end %>
       </ul>
       <nav>
