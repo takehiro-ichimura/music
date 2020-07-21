@@ -7,6 +7,8 @@
     <% set_meta_tags title: "#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ"  %>
   <% end %>
 
+  <% set_meta_tags description: "オトハブ Review|#{@post.summary}"  %>
+
   <div class="col s12">
     <% if @post.score %>
       <span class="right">Score: <%= @post.score %>/10</span>
