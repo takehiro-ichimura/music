@@ -18,6 +18,7 @@
 <html>
   <head>
     <title>オトハブ</title>
+    <%= display_meta_tags(default_meta_tags) %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -77,15 +78,12 @@
     <header>
       <ul id="dropdown1" class="dropdown-content">
         <li><a href='/'>TOP</a></li>
-        <% if user_signed_in? %>
-          <li><a href="/users/<%= current_user.id %>">マイページ</a></li>
-        <% end %>
         <li><a href='/artists'>アーティスト</a></li>
         <li><a href="/albums">アルバム</a></li>
         <li><a href="/posts">新着投稿</a></li>
         <% if user_signed_in? %>
           <li class="divider"></li>
-          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          <li><a href="/users/<%= current_user.id %>" class="orange-text">マイページ</a></li>
         <% else %>
           <li class="divider"></li>
           <li><a href="/users/sign_in">ログイン</a></li>

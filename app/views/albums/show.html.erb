@@ -1,3 +1,5 @@
+<% set_meta_tags title: "#{@album.name}/#{@artist.name}|オトハブ"  %>
+
 <h5><%= @album.name %>/<%= link_to @artist.name, "/artists/#{@artist.id}" %></h5>
 <% if current_user %>
   <div id="follow-album-<%= @album.id %>">

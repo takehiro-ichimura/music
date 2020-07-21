@@ -138,6 +138,8 @@ GEM
       railties (>= 3.2)
     materialize-sass (1.0.0)
       autoprefixer-rails (>= 6.0.3)
+    meta-tags (2.13.0)
+      actionpack (>= 3.2.0, < 6.1)
     method_source (1.0.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
@@ -296,6 +298,7 @@ DEPENDENCIES
   listen (~> 3.2)
   material_icons
   materialize-sass
+  meta-tags
   omniauth-twitter
   pg
   puma (~> 4.1)

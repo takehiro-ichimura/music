@@ -1,8 +1,10 @@
  <div class="row">
   <% if @album %>
     <h6><%= link_to @post.album.name, "/artists/#{@post.artist.id}/albums/#{@post.album.id}" %> / <%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
+     <% set_meta_tags title: "#{@post.album.name}/#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ"  %>
   <% else %>
     <h6><%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
+    <% set_meta_tags title: "#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ"  %>
   <% end %>
 
   <div class="col s12">

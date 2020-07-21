@@ -77,3 +77,5 @@ gem 'rails-i18n'
 gem 'rinku'
 
 gem 'kaminari'
+
+gem 'meta-tags'
