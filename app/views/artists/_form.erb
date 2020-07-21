@@ -8,5 +8,13 @@
   <%= f.text_field :othername, placeholder:"(例)ローリングストーンズ,ストーンズ", class: "form-control" %>
   <p>タグ(ジャンルなど)、カンマ区切り複数</p>
   <%= f.text_field :tags, placeholder:"(例)ロック,60s,ブルース", class: "form-control" %>
+  <p>WikipediaのURL(任意)</p>
+  <%= f.text_field :wikipedia , placeholder:"(例)https://ja.wikipedia.org/...", class: "form-control" %>
+  <p>Apple Musicのシェアリンク(任意)</p>
+  <%= f.text_field :apple, placeholder:"(例)https://music.apple.com/...", class: "form-control" %>
+  <p>Spotifyのシェアリンク(任意)</p>
+  <%= f.text_field :spotify, placeholder:"(例)https://open.spotify.com/...", class: "form-control" %>
+  <p>bandcampのシェアリンク(任意)</p>
+  <%= f.text_field :bandcamp, placeholder:"(例)http://xxx.bandcamp.com/...", class: "form-control" %>
   <%= f.submit "送信", class:"btn btn-secondary" %>
 <% end %>

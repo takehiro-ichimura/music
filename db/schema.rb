@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_211824) do
+ActiveRecord::Schema.define(version: 2020_07_21_153312) do
 
   create_table "albums", force: :cascade do |t|
     t.string "name"
@@ -34,6 +34,10 @@ ActiveRecord::Schema.define(version: 2020_07_18_211824) do
     t.boolean "edit_flg", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "apple"
+    t.string "spotify"
+    t.string "bandcamp"
+    t.string "wikipedia"
   end
 
   create_table "comments", force: :cascade do |t|

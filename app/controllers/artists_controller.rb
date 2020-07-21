@@ -59,6 +59,6 @@ class ArtistsController < ApplicationController
   end
 
   def artists_params
-    params.require(:artist).permit(:name, :othername, :tags)
+    params.require(:artist).permit(:name, :othername, :tags, :apple, :wikipedia, :spotify, :bandcamp)
   end
 end
