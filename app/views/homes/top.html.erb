@@ -1,4 +1,7 @@
 <p>このサイトの使い方は<a href="/aboutus">こちら</a></p>
+<% unless current_user %>
+  <p><a href="/users/sign_in">ログイン</a>すると誰でもレビューできるサイトです</p>
+<% end %>
 <div class="center">
   <%= link_to "アーティスト", "/artists", class:"btn" %>
   <%= link_to "アルバム", "/albums", class:"btn" %>
