@@ -8,40 +8,40 @@
 			<br />
 		<% end %>
 		<span class="card-title"><%= post.summary %></span>
-		<div class="right-align">Reviewed by <strong><a href="/users/<%= post.user.id %>"><%= post.user.username %></a></strong></div>
+		<div class="right-align">
+			<% if current_user %>
+				<% if current_user.id == post.user.id %>
+					<a href=<%=  post.post_path + "/edit" %>>編集</a><br/>
+				<% end %>
+			<% end %>
+			Reviewed by <strong><a href="/users/<%= post.user.id %>"><%= post.user.username %></a></strong>
 		</div>
-		<div class="card-action">
-			<a></a>
-			<small>
-				<% if current_user %>
-					<div id="like-<%= post.id %>" style="float:left;">
-						<%= render partial: "like", locals: { post: post } %>
-					</div>
-					<div id="stock-<%= post.id %>" style="float:left;">
-						<%= render partial: "stock", locals: { post: post } %>
-					</div>
-				<% end %>
-				<% if post.comment_flg or post.content %>
-					<div style="float:left;">
-						<% if post.content.length != 0 %>
-							<a href=<%=  post.post_path %>>本文/コメント</a>
-						<% elsif post.comment_flg %>
-							<a href=<%=  post.post_path %>>コメント</a>
-						<% end %>
-					</div>
-				<% end %>
-				<% if post.blog_url.length != 0 %>
-					<div style="float:left;">
-						<a href="<%= post.blog_url %>" class="red-text">ブログを読む</a>
-					</div>
-				<% end %>
-				<% if current_user %>
-					<% if current_user.id == post.user.id %>
-						<div style="float:left;">
-							<a href=<%=  post.post_path + "/edit" %>>編集</a>
-						</div>
+	</div>
+	<div class="card-action bitsmall">
+		<a></a>
+		<span>
+			<% if current_user %>
+				<div id="like-<%= post.id %>" style="float:left;">
+					<%= render partial: "like", locals: { post: post } %>
+				</div>
+				<div id="stock-<%= post.id %>" style="float:left;">
+					<%= render partial: "stock", locals: { post: post } %>
+				</div>
+			<% end %>
+			<% if post.comment_flg or post.content %>
+				<div style="float:left;">
+					<% if post.content.length != 0 %>
+						<a href=<%=  post.post_path %> class="green-text">本文/コメント</a>
+					<% elsif post.comment_flg %>
+						<a href=<%=  post.post_path %>>コメント</a>
 					<% end %>
-				<% end %>
-			</small>
+				</div>
+			<% end %>
+			<% if post.blog_url.length != 0 %>
+				<div style="float:left;">
+					<a href="<%= post.blog_url %>" class="red-text">ブログを読む</a>
+				</div>
+			<% end %>
+		</span>
 	</div>
 </div>

@@ -1,7 +1,11 @@
-<div class="input-field col s6">
+<div class="row">
   <%= form_tag("/albums/search",:method => 'get') do %>
-    <%= text_field_tag :word, "" ,placeholder: "(例)Abbey Road", value: @word %>
-    <%= submit_tag '検索', :name => nil, class:"btn right" %>
+    <div class="col s10">
+      <%= text_field_tag :word, "" ,placeholder: "(例)Abbey Road", value: @word %>
+    </div>
+    <div class="col s2">
+      <%= submit_tag '検索', :name => nil, class:"btn right" %>
+    </div>
   <% end %>
 </div>
 <% @albums.each do |album| %>

@@ -1,19 +1,21 @@
-<div class="input-field col s6">
+<div class="row">
   <%= form_tag("/posts/search",:method => 'get') do %>
+    <div class="col s10">
     <%= text_field_tag :word, "" ,placeholder: "(例)Beatles", value: "#{@word}" %>
-    <%= submit_tag '検索', :name => nil, class:"btn right" %>
+    </div>
+    <div class="col s2">
+      <%= submit_tag '検索', :name => nil, class:"btn right-align" %>
+    </div>
   <% end %>
 </div>
-<div class="row"> 
-  <div class="col s12">
-    <% @posts.each do |post| %>
-      <div>
-      <%= render partial: "card", locals: { post: post } %>
-      </div>
-    <% end %>
-  <div class="col s12">
-    <div class="center">
-      <%= paginate @posts %>
+<div class="col s12">
+  <% @posts.each do |post| %>
+    <div>
+    <%= render partial: "card", locals: { post: post } %>
     </div>
+  <% end %>
+<div class="col s12">
+  <div class="center">
+    <%= paginate @posts %>
   </div>
 </div>

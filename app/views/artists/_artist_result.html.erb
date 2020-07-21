@@ -1,7 +1,11 @@
-<div class="input-field col s6">
+<div class="row">
   <%= form_tag("/artists/search",:method => 'get') do %>
-    <%= text_field_tag :word, "" ,placeholder: "(例)Little Richard", value: @word %>
-    <%= submit_tag '検索', :name => nil, class:"btn right" %>
+    <div class="col s10">
+      <%= text_field_tag :word, "" ,placeholder: "(例)Little Richard", value: @word %>
+    </div>
+    <div class="col s2">
+      <%= submit_tag '検索', :name => nil, class:"btn right" %>
+    </div>
   <% end %>
 </div>
 
