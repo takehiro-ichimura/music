@@ -1,3 +1,11 @@
+ <style>
+  .share {
+    height: 22px;
+    line-height: 22px;
+    font-size: 13px;
+    padding: 0 10px;
+}
+ </style>
  <div class="row">
   <% if @album %>
     <h6><%= link_to @post.album.name, "/artists/#{@post.artist.id}/albums/#{@post.album.id}" %>/ <%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
@@ -50,10 +58,24 @@
         &nbsp; &nbsp;
       </div>
     <% end %>
-
     <% if @post.blog_url.length != 0 %>
       <a href="<%= @post.blog_url %>" class="red btn-small">ブログを読む</a>
     <% end %>
+    <br />
+    <br />
+    <br />
+    <div class="left">
+      <% if @artist %>
+        <% tweet_content = "#{@post.album.name}/#{@post.artist.name} Reviewed by #{@post.user.username}" %>
+      <% else %>
+        <% tweet_content = "#{@post.artist.name} Reviewed by #{@post.user.username}" %>
+      <% end %>
+      <%= link_to 'TWEET', "https://twitter.com/share?url=#{request.url}&text=#{tweet_content.truncate(100)}}", class: 'btn-small light-blue share', data: { show_count: false }, title: "ぴえん。", target: '_blank' %>
+      <%= javascript_include_tag 'https://platform.twitter.com/widgets.js', charset: 'utf-8', async: true %>
+    </div>
+    <div style="float:left;">
+      &nbsp; &nbsp;
+    </div>
     <br />
     <br />
     <% if @post.comment_flg %>
