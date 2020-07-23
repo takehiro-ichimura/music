@@ -7,7 +7,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :stocks, dependent: :destroy
   validates :content, presence: false
-  validate :unique_album
+  validates :unique_album
   def post_path
     if album_id.present?
       return "/artists/#{artist.id}/albums/#{album.id}/#{id}/"
