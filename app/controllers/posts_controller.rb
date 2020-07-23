@@ -43,6 +43,10 @@ class PostsController < ApplicationController
     else
       score = params[:score]
     end
+    if Post.find_by(user_id: params[:user_id], album_id: params[:album_id])
+      redirect_to("/")
+      return
+    end
     @post = Post.new(
       summary: params[:summary],
       content: params[:content],
