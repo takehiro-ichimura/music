@@ -41,7 +41,18 @@
 <br />
 <div class="divider"></div>
 
-<h6>このアルバムの投稿 &emsp;<%= link_to "投稿する", "/artists/#{@artist.id}/albums/#{@album.id}/new", class: "btn-small" %></h6>
+<h6>このアルバムの投稿 &emsp;
+<% if current_user %>
+	<% if current_user.already_album_posted?(@album) %>
+		<a class="btn disabled">投稿済み</a>
+	<% else %>
+		<%= link_to "投稿する", "/artists/#{@artist.id}/albums/#{@album.id}/new", class: "btn-small" %>
+	<% end %>
+<% else %>
+	<%= link_to "投稿する", "/artists/#{@artist.id}/albums/#{@album.id}/new", class: "btn-small" %>
+<% end %>
+
+</h6>
 <div class="row">
 	<% @posts.each do |post| %>
 		<%= render partial: "card", locals: { post: post } %>

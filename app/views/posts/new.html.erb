@@ -27,25 +27,26 @@
 	<div class="input-field col s6">
 		<textarea name="summary" placeholder="(例)このアルバムで特筆すべきはビルワイマンの生み出す、唯一無二のグルーブである" id="textarea2" class="materialize-textarea" data-length="140"><%= @post.summary %></textarea>
 	</div>
-	<br/>
 	<p>ブログURL(任意)</p>
 	<input name="blog_url" placeholder="(例)http://www...."><%= @post.blog_url %></input>
-	<br/>
-	<p>得点(10点満点、任意)</p>
-	<select name="score" class="browser-default">
-		<option value="nil">-</option>
-		<option value="0">0</option>
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="5">5</option>
-		<option value="6">6</option>
-		<option value="7">7</option>
-		<option value="8">8</option>
-		<option value="9">9</option>
-		<option value="10">10</option>
-	</select>
+	<% if @album %>
+		<br/>
+		<p>得点(10点満点、任意)</p>
+		<select name="score" class="browser-default">
+			<option value="nil">-</option>
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</select>
+	<% end %>
 	<p>レビュー本文(任意)</p>
 	<textarea name="content" class="materialize-textarea"><%= @post.content %></textarea>
 	<input type="hidden" name="public" value="true">

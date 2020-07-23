@@ -27,4 +27,7 @@ class User < ApplicationRecord
   def already_album_followed?(album)
     self.follows.exists?(album_id: album.id)
   end
+  def already_album_posted?(album)
+    self.posts.exists?(album_id: album.id)
+  end
 end
