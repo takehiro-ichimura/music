@@ -1,12 +1,19 @@
  <style>
   .share {
-    height: 20px;
-    line-height: 20px;
+    height: 22px;
+    line-height: 22px;
     font-size: 11px;
-    padding: 0 0px;
+    padding: 0 2px;
     margin: 1.5px 0 0 0;
     border-radius: 3px;
-}
+  }
+  img {
+      width:auto;
+      height:auto;
+      max-width:100%;
+      max-height:100%;
+      padding: 1.5px 1.5px;
+  }
  </style>
  <div class="row">
   <% if @album %>
@@ -74,19 +81,23 @@
       <% else %>
         <% tweet_content = "#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ" %>
       <% end %>
-      <div class="z-depth-1 left share">
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw<%= request.url %>&text=<%= tweet_content.truncate(100) %>" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <div class="left">
+        <a href="https://twitter.com/share?url=<%= request.url %>&text=<%= tweet_content.truncate(100) %>" rel="nofollow" target="_blank" class="btn-small light-blue share z-depth-1"><img src="/assets/Twitter_Social_Icon_Circle_White.png"><div class="share-text right">tweet</div></a>
       </div>
-      <%#= link_to 'TWEET', "https://twitter.com/share?url=#{request.url}&text=#{tweet_content.truncate(100)}", class: 'btn-small light-blue share', data: { show_count: false }, title: "ぴえん。", target: '_blank' %>
-      <%#= javascript_include_tag 'https://platform.twitter.com/widgets.js', charset: 'utf-8', async: true %>
+      <% if false %>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw<%= request.url %>&text=<%= tweet_content.truncate(100) %>" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <a href="https://twitter.com/share?url=<%= request.url %>&text=<%= tweet_content.truncate(100) %>" class="btn-small light-blue share"><img src="/assets/Twitter_Social_Icon_Circle_White.png"><div class="share-text right">tweet</div></a>
+        <%#&text=#{tweet_content.truncate(100)}", class: 'btn-small light-blue share', data: { show_count: false }, title: "ぴえん。", target: '_blank' %>
+        <%#= javascript_include_tag 'https://platform.twitter.com/widgets.js', charset: 'utf-8', async: true %>
+      <% end %>
+      
     </div>
     <div style="float:left;">
       &nbsp; &nbsp;
     </div>
-    <div id="fb-root"></div>
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v7.0" nonce="KIsgih72"></script>
-    <div class="fb-share-button z-depth-1 left" style="border-radius: 4px;" data-href="<%= request.url %>" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
-
+    <div class="left">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.url %>" class="btn-small blue share"><img src="/assets/f_logo_RGB-White_58.png"><div class="share-text right">シェア</div></a>
+    </div>
     <div style="float:left;">
       &nbsp; &nbsp;
     </div>
