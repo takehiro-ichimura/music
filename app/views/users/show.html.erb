@@ -81,7 +81,11 @@
           <%= render partial: "card", locals: { post: post, tab: 3 } %>
         <% end %>
       </div>
+    <% else %>
+      <p class="center">投稿一覧</p>
     <% end %>
+  <% else %>
+      <p class="center">投稿一覧</p>
   <% end %>
   <div id="test4" class="col s12">
     <% @user.posts.order(point: "DESC").each do |post| %>

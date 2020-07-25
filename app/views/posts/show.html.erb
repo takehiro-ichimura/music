@@ -101,6 +101,10 @@
     <div style="float:left;">
       &nbsp; &nbsp;
     </div>
+    <div class="left">
+      <div id="js-copytext" style="display:none;"><%= request.url %></div>
+      <button type="button" id="js-copybtn" class="btn-small grey share">リンクをコピー</button>
+    </div>
     <br />
     <br />
     <% if @post.comment_flg %>

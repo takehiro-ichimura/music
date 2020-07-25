@@ -79,3 +79,5 @@ gem 'rinku'
 gem 'kaminari'
 
 gem 'meta-tags'
+
+gem 'clipboard-rails'
