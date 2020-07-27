@@ -7,7 +7,13 @@
 		<% else %>
 			<br />
 		<% end %>
-		<div class="card-title"><a href="<%=  post.post_path %>"><p class="black-text lighten-4"><%= post.summary %></p></a></div>
+		<div class="card-title">
+			<a href="<%=  post.post_path %>">
+				<p class="black-text lighten-4">
+					<%= post.summary %>
+				</p>
+			</a>
+		</div>
 		<div class="right-align">
 			<% if current_user %>
 				<% if current_user.id == post.user.id %>
