@@ -113,23 +113,25 @@
       <% end %>
     <% end %>
     <br />
-    <% if @album %>
-      <% if @album.spotify %>
-        <% if @album.spotify.length != 0  %>
-          <%= link_to "Spotify", @album.spotify, class: "btn-small light-green-text grey darken-3" %>
+    <div>
+      <% if @album %>
+        <% if @album.spotify %>
+          <% if @album.spotify.length != 0  %>
+            <%= link_to "Spotify", @album.spotify, class: "btn-small light-green-text grey darken-3" %>
+          <% end %>
+        <% end %>
+        <% if @album.bandcamp %>
+          <% if @album.bandcamp.length != 0 %>
+            <%= link_to "Bandcamp", @album.bandcamp, class: "btn-small light-blue darken-3" %>
+          <% end %>
+        <% end %>
+        <% if @album.wikipedia %>
+          <% if @album.wikipedia.length != 0 %>
+            <%= link_to "Wiki", @album.wikipedia, class: "btn-small blue-grey lighten-5 black-text" %>
+          <% end %>
         <% end %>
       <% end %>
-      <% if @album.bandcamp %>
-        <% if @album.bandcamp.length != 0 %>
-          <%= link_to "Bandcamp", @album.bandcamp, class: "btn-small light-blue darken-3" %>
-        <% end %>
-      <% end %>
-      <% if @album.wikipedia %>
-        <% if @album.wikipedia.length != 0 %>
-          <%= link_to "Wiki", @album.wikipedia, class: "btn-small blue-grey lighten-5 black-text" %>
-        <% end %>
-      <% end %>
-    <% end %>
+    </div>
     <br />
     <% if @post.comment_flg %>
       <p>コメント欄</p>
