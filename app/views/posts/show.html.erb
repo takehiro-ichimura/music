@@ -115,6 +115,8 @@
     <br />
     <div>
       <% if @album %>
+        <p>このアルバムを聴く</p>
+      <div class="divider"></div>
         <% if @album.spotify %>
           <% if @album.spotify.length != 0  %>
             <%= link_to "Spotify", @album.spotify, class: "btn-small light-green-text grey darken-3" %>
