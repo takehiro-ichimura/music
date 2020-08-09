@@ -139,12 +139,14 @@
       <p>コメント欄</p>
       <div class="divider"></div>
       <% @post.comments.each do |comment| %>
-        <div class="row">
-          <div class="col s12">
-            <p><%= comment.text %></p>
-          </div>
-          <div class="col s12">
-            <small class="right">Commented by <%= link_to comment.user.username, "/users/#{comment.user.id}" %></small>
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <p><%= comment.text %></p>
+            </div>
+            <div class="col s12">
+              <small class="right">Commented by <%= link_to comment.user.username, "/users/#{comment.user.id}" %></small>
+            </div>
           </div>
         </div>
         <div class="divider"></div>
