@@ -107,16 +107,16 @@
     </div>
     <br />
     <br />
-    <% if @album.apple %>
-      <% if @album.apple.length != 0 %>
-        <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height=300" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="<%= @album.apple.sub("music.apple.com","embed.music.apple.com") %>"></iframe>
-      <% end %>
-    <% end %>
-    <br />
     <div>
       <% if @album %>
         <p>このアルバムを聴く</p>
       <div class="divider"></div>
+        <br />
+        <% if @album.apple %>
+          <% if @album.apple.length != 0 %>
+            <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height=300" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="<%= @album.apple.sub("music.apple.com","embed.music.apple.com") %>"></iframe>
+          <% end %>
+        <% end %>
         <% if @album.spotify %>
           <% if @album.spotify.length != 0  %>
             <%= link_to "Spotify", @album.spotify, class: "btn-small light-green-text grey darken-3" %>
