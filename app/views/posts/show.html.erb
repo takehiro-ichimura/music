@@ -107,6 +107,30 @@
     </div>
     <br />
     <br />
+    <% if @album.apple %>
+      <% if @album.apple.length != 0 %>
+        <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height=300" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="<%= @album.apple.sub("music.apple.com","embed.music.apple.com") %>"></iframe>
+      <% end %>
+    <% end %>
+    <br />
+    <% if @album %>
+      <% if @album.spotify %>
+        <% if @album.spotify.length != 0  %>
+          <%= link_to "Spotify", @album.spotify, class: "btn-small light-green-text grey darken-3" %>
+        <% end %>
+      <% end %>
+      <% if @album.bandcamp %>
+        <% if @album.bandcamp.length != 0 %>
+          <%= link_to "Bandcamp", @album.bandcamp, class: "btn-small light-blue darken-3" %>
+        <% end %>
+      <% end %>
+      <% if @album.wikipedia %>
+        <% if @album.wikipedia.length != 0 %>
+          <%= link_to "Wiki", @album.wikipedia, class: "btn-small blue-grey lighten-5 black-text" %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <br />
     <% if @post.comment_flg %>
       <p>コメント欄</p>
       <div class="divider"></div>
