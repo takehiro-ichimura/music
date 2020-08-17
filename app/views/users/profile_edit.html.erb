@@ -1,7 +1,9 @@
+<h5>プロフィール編集</h5>
 <%= form_with url:"/users/profile_update", local: true do |f| %>
   <% @user.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
+  <br />
   <p>プロフィール文</p>
   <%= f.text_field :profile, placeholder:"(例)60年代のロックが好きです!", class: "form-control", value: @user.profile %>
   <p>ブログURL</p>

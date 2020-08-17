@@ -1,10 +1,10 @@
-<h5>Edit <%= resource_name.to_s.humanize %></h5>
+<h5>アカウント設定編集</h5>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label "ユーザー名" %><br />
     <%= f.text_field :username, autocomplete: "username" %>
   </div>
 
@@ -18,11 +18,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(変更しない場合は空欄にしてください)</i><br />
+    <%= f.label :password %> (変更しない場合は空欄にしてください・<%= @minimum_password_length %> 文字以上)<br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> 文字以上</em>
     <% end %>
   </div>
 
@@ -32,17 +31,18 @@
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(パスワードを変更するために現在のパスワードを入力してください)</i><br />
+    <%= f.label :current_password %> (パスワードを変更するために現在のパスワードを入力してください)<br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "更新" %>
+    <%= f.submit "更新する", class: "btn" %>
   </div>
 <% end %>
+<br />
 
-<h3>アカウント削除</h3>
+<h5>アカウント削除</h5>
 
-<p>投稿データなどは元に戻せません <%= button_to "削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>投稿データなどは元に戻せません <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn red" %></p>
 
-<%= link_to "Back", :back %>
+<%#= link_to "Back", :back %>
