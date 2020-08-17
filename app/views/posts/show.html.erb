@@ -14,128 +14,135 @@
       max-height:100%;
       padding: 1.5px 1.5px;
   }
- </style>
- <div class="row">
-  <% if @album %>
-    <h6><%= link_to @post.album.name, "/artists/#{@post.artist.id}/albums/#{@post.album.id}" %>/ <%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
-     <% set_meta_tags title: "#{@post.album.name}/#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ"  %>
-     <% set_meta_tags canonical: "https://otohub.tokyo/artists/#{@post.artist.id}/albums/#{@post.album.id}/#{@post.id}" %>
-  <% else %>
-    <h6><%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
-    <% set_meta_tags title: "#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ"  %>
-    <% set_meta_tags canonical: "https://otohub.tokyo/artists/#{@post.artist.id}/#{@post.id}" %>
-  <% end %>
-
-  <% set_meta_tags description: "オトハブ Review|#{@post.summary}"  %>
-
+</style>
+<div class="row">
   <div class="col s12">
-    <% if @post.score %>
-      <span class="right">Score: <%= @post.score %>/10</span>
+    <% if @album %>
+      <h6><%= link_to @post.album.name, "/artists/#{@post.artist.id}/albums/#{@post.album.id}" %>/ <%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
+      <% set_meta_tags title: "#{@post.album.name}/#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ"  %>
+      <% set_meta_tags canonical: "https://otohub.tokyo/artists/#{@post.artist.id}/albums/#{@post.album.id}/#{@post.id}" %>
     <% else %>
-      <span class="blue-grey-text right">Score: -/10</span>
-    <% end %> 
-  </div>
-  <br />
-  <h5><%= @post.summary %></h5>
-  <div class="col s12">
-    <% if current_user %>
-      <% if current_user.id == @post.user.id %>
-        <% if @album %>
-          <a href=<%= "/artists/#{@artist.id}/albums/#{@album.id}/#{@post.id}/edit" %> class="right">編集する</a>
-        <% else %>
-          <a href=<%= "/artists/#{@artist.id}/#{@post.id}/edit" %> class="right">編集する</a>
-        <% end %>
-      <% end %>
+      <h6><%= link_to @post.artist.name, "/artists/#{@post.artist.id}" %></h6>
+      <% set_meta_tags title: "#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ"  %>
+      <% set_meta_tags canonical: "https://otohub.tokyo/artists/#{@post.artist.id}/#{@post.id}" %>
     <% end %>
   </div>
-  <div class="col s12">
-    <h6 class="right">Reviewed by <%= link_to @post.user.username, "/users/#{@post.user.id}" %></h6>
-  </div>
-  <div class="col s12">
-    <div class="divider"></div>
-    <span class="bitlarge"><p><%= raw Rinku.auto_link(simple_format(@post.content), :all, 'target="_blank"') %></p></span>
-    <br />
-    <% if current_user %>
-      <div id="likebtn-<%= @post.id %>" style="float:left;">
-        <%= render partial: "likebtn", locals: { post: @post } %>
-      </div>
-      <div style="float:left;">
-        &nbsp; &nbsp;
-      </div>
-      <div id="stockbtn-<%= @post.id %>" style="float:left;" style="mergin-left">
-        <%= render partial: "stockbtn", locals: { post: @post } %>
-      </div>
-      <div style="float:left;">
-        &nbsp; &nbsp;
-      </div>
-    <% end %>
-    <% if @post.blog_url.length != 0 %>
-      <a href="<%= @post.blog_url %>" class="red btn-small">ブログを読む</a>
-    <% end %>
-    <% if current_user %>
-      <br />
-    <% end %>
-    <br />
-    <br />
-    <div class="left">
-      <% if @album %>
-        <% tweet_content = "#{@post.album.name}/#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ" %>
+  <div class="col s12 l7">
+
+    <% set_meta_tags description: "オトハブ Review|#{@post.summary}"  %>
+
+    <div class="col s12">
+      <% if @post.score %>
+        <span class="right">Score: <%= @post.score %>/10</span>
       <% else %>
-        <% tweet_content = "#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ" %>
-      <% end %>
-      <div class="left">
-        <a href="https://twitter.com/share?url=<%= request.url %>&text=<%= tweet_content.truncate(100) %>" rel="nofollow" target="_blank" class="btn-small light-blue share z-depth-1"><img src="/assets/Twitter_Social_Icon_Circle_White.png"><div class="share-text right">tweet</div></a>
-      </div>
-      <% if false %>
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw<%= request.url %>&text=<%= tweet_content.truncate(100) %>" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        <a href="https://twitter.com/share?url=<%= request.url %>&text=<%= tweet_content.truncate(100) %>" class="btn-small light-blue share"><img src="/assets/Twitter_Social_Icon_Circle_White.png"><div class="share-text right">tweet</div></a>
-        <%#&text=#{tweet_content.truncate(100)}", class: 'btn-small light-blue share', data: { show_count: false }, title: "ぴえん。", target: '_blank' %>
-        <%#= javascript_include_tag 'https://platform.twitter.com/widgets.js', charset: 'utf-8', async: true %>
-      <% end %>
-      
-    </div>
-    <div style="float:left;">
-      &nbsp; &nbsp;
-    </div>
-    <div class="left">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.url %>" class="btn-small blue share"><img src="/assets/f_logo_RGB-White_58.png"><div class="share-text right">シェア</div></a>
-    </div>
-    <div style="float:left;">
-      &nbsp; &nbsp;
-    </div>
-    <div class="left">
-      <textarea id="js-copytext" style="display:none;font-size:16px;position:fixed;left:100vw" readonly=readonly><%= request.url %></textarea>
-      <button type="button" id="js-copybtn" class="btn-small grey share">リンクをコピー</button>
+        <span class="blue-grey-text right">Score: -/10</span>
+      <% end %> 
     </div>
     <br />
-    <br />
-    <div>
-      <% if @album %>
-        <p>このアルバムを聴く</p>
+    <h5><%= @post.summary %></h5>
+    <div class="col s12">
+      <% if current_user %>
+        <% if current_user.id == @post.user.id %>
+          <% if @album %>
+            <a href=<%= "/artists/#{@artist.id}/albums/#{@album.id}/#{@post.id}/edit" %> class="right">編集する</a>
+          <% else %>
+            <a href=<%= "/artists/#{@artist.id}/#{@post.id}/edit" %> class="right">編集する</a>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col s12">
+      <h6 class="right">Reviewed by <%= link_to @post.user.username, "/users/#{@post.user.id}" %></h6>
+    </div>
+    <div class="col s12">
       <div class="divider"></div>
+      <span class="bitlarge"><p><%= raw Rinku.auto_link(simple_format(@post.content), :all, 'target="_blank"') %></p></span>
+      <br />
+      <% if current_user %>
+        <div id="likebtn-<%= @post.id %>" style="float:left;">
+          <%= render partial: "likebtn", locals: { post: @post } %>
+        </div>
+        <div style="float:left;">
+          &nbsp; &nbsp;
+        </div>
+        <div id="stockbtn-<%= @post.id %>" style="float:left;" style="mergin-left">
+          <%= render partial: "stockbtn", locals: { post: @post } %>
+        </div>
+        <div style="float:left;">
+          &nbsp; &nbsp;
+        </div>
+      <% end %>
+      <% if @post.blog_url.length != 0 %>
+        <a href="<%= @post.blog_url %>" class="red btn-small">ブログを読む</a>
+      <% end %>
+      <% if current_user %>
         <br />
-        <% if @album.apple %>
-          <% if @album.apple.length != 0 %>
-            <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height=300" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="<%= @album.apple.sub("music.apple.com","embed.music.apple.com") %>"></iframe>
-          <% end %>
+      <% end %>
+      <br />
+      <br />
+      <div class="left">
+        <% if @album %>
+          <% tweet_content = "#{@post.album.name}/#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ" %>
+        <% else %>
+          <% tweet_content = "#{@post.artist.name} Reviewed by #{@post.user.username}|オトハブ" %>
         <% end %>
-        <% if @album.spotify %>
-          <% if @album.spotify.length != 0  %>
-            <%= link_to "Spotify", @album.spotify, class: "btn-small light-green-text grey darken-3" %>
-          <% end %>
+        <div class="left">
+          <a href="https://twitter.com/share?url=<%= request.url %>&text=<%= tweet_content.truncate(100) %>" rel="nofollow" target="_blank" class="btn-small light-blue share z-depth-1"><img src="/assets/Twitter_Social_Icon_Circle_White.png"><div class="share-text right">tweet</div></a>
+        </div>
+        <% if false %>
+          <a href="https://twitter.com/share?ref_src=twsrc%5Etfw<%= request.url %>&text=<%= tweet_content.truncate(100) %>" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <a href="https://twitter.com/share?url=<%= request.url %>&text=<%= tweet_content.truncate(100) %>" class="btn-small light-blue share"><img src="/assets/Twitter_Social_Icon_Circle_White.png"><div class="share-text right">tweet</div></a>
+          <%#&text=#{tweet_content.truncate(100)}", class: 'btn-small light-blue share', data: { show_count: false }, title: "ぴえん。", target: '_blank' %>
+          <%#= javascript_include_tag 'https://platform.twitter.com/widgets.js', charset: 'utf-8', async: true %>
         <% end %>
-        <% if @album.bandcamp %>
-          <% if @album.bandcamp.length != 0 %>
-            <%= link_to "Bandcamp", @album.bandcamp, class: "btn-small light-blue darken-3" %>
-          <% end %>
-        <% end %>
-        <% if @album.wikipedia %>
-          <% if @album.wikipedia.length != 0 %>
-            <%= link_to "Wiki", @album.wikipedia, class: "btn-small blue-grey lighten-5 black-text" %>
-          <% end %>
+        
+      </div>
+      <div style="float:left;">
+        &nbsp; &nbsp;
+      </div>
+      <div class="left">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= request.url %>" class="btn-small blue share"><img src="/assets/f_logo_RGB-White_58.png"><div class="share-text right">シェア</div></a>
+      </div>
+      <div style="float:left;">
+        &nbsp; &nbsp;
+      </div>
+      <div class="left">
+        <textarea id="js-copytext" style="display:none;font-size:16px;position:fixed;left:100vw" readonly=readonly><%= request.url %></textarea>
+        <button type="button" id="js-copybtn" class="btn-small grey share">リンクをコピー</button>
+      </div>
+      <br />
+      <br />
+    </div>
+  </div>
+  <div class="col s12 l1">
+    <br />
+  </div>
+  <div class="col s12 l4">
+    <% if @album %>
+      <p>このアルバムを聴く</p>
+    <div class="divider"></div>
+      <br />
+      <% if @album.apple %>
+        <% if @album.apple.length != 0 %>
+          <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height=300" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="<%= @album.apple.sub("music.apple.com","embed.music.apple.com") %>"></iframe>
         <% end %>
       <% end %>
-    </div>
+      <% if @album.spotify %>
+        <% if @album.spotify.length != 0  %>
+          <%= link_to "Spotify", @album.spotify, class: "btn-small light-green-text grey darken-3" %>
+        <% end %>
+      <% end %>
+      <% if @album.bandcamp %>
+        <% if @album.bandcamp.length != 0 %>
+          <%= link_to "Bandcamp", @album.bandcamp, class: "btn-small light-blue darken-3" %>
+        <% end %>
+      <% end %>
+      <% if @album.wikipedia %>
+        <% if @album.wikipedia.length != 0 %>
+          <%= link_to "Wiki", @album.wikipedia, class: "btn-small blue-grey lighten-5 black-text" %>
+        <% end %>
+      <% end %>
+    <% end %>
     <br />
     <% if @post.comment_flg %>
       <p>コメント欄</p>
