@@ -54,7 +54,8 @@ class PostsController < ApplicationController
       blog_url: params[:blog_url],
       score: score,
       album_id: params[:album_id],
-      artist_id: params[:artist_id]
+      artist_id: params[:artist_id],
+      html: params[:html]
     )
     if @post.save
       flash[:notice] = "投稿しました"
@@ -99,7 +100,8 @@ class PostsController < ApplicationController
       blog_url: params[:blog_url],
       score: score,
       album_id: params[:album_id],
-      artist_id: params[:artist_id]
+      artist_id: params[:artist_id],
+      html: params[:html]
     )
       flash[:notice] = "投稿を更新しました"
       if params[:album_id]

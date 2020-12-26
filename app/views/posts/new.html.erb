@@ -57,5 +57,10 @@
 	<% else %>
 		<input type="hidden" name="artist_id" value="<%= @artist.id %>">
 	<% end %>
+	<p>本文のフォーマット</p>
+	<select name="html" id="html">
+	<option value="false">テキスト(標準)</option>
+	<option value="true">HTML</option>
+	</select>
 	<input type="submit" class="btn" value="送信">
 <% end %>

@@ -46,6 +46,16 @@
 		<input type="hidden" name="album_id" value="<%= @album.id %>">
 	<% end %>
 	<input type="hidden" name="artist_id" value="<%= @artist.id %>">
+	<p>本文のフォーマット</p>
+	<select name="html" id="html">
+	<% if @post.html %>
+		<option value="false">テキスト(標準)</option>
+		<option value="true" selected>HTML</option>
+	<% else %>
+		<option value="false" selected>テキスト(標準)</option>
+		<option value="true">HTML</option>
+	<% end %>
+	</select>
 	<input type="submit" class="btn" value="送信">
 <% end %>
 <br />

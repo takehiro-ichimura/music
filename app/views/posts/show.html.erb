@@ -56,7 +56,11 @@
     </div>
     <div class="col s12">
       <div class="divider"></div>
-      <span class="bitlarge"><p><%= raw Rinku.auto_link(simple_format(@post.content), :all, 'target="_blank"') %></p></span>
+      <% if @post.html %>
+        <span class="bitlarge"><p><%= @post.content.html_safe %></p></span>
+      <% else %>
+        <span class="bitlarge"><p><%= raw Rinku.auto_link(simple_format(@post.content), :all, 'target="_blank"') %></p></span>
+      <% end %>
       <br />
       <% if current_user %>
         <div id="likebtn-<%= @post.id %>" style="float:left;">
