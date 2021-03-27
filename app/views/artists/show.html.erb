@@ -1,43 +1,65 @@
 <% set_meta_tags title: "#{@artist.name}|オトハブ"  %>
-<a href="/artists"><p class="green-text">アーティスト</p></a>
-<h5><%= @artist.name %></h5>
-<% if current_user %>
-  <div id="follow-artist-<%= @artist.id %>">
-    <%= render partial: "follow", locals: { artist: @artist } %>
+<div class="row">
+  <a href="/artists"><p>アーティスト</p></a>
+  <div class="col s6 l4 center">
+    <% if @artist.imagelink %>
+      <img class="materialboxed" src="<%= @artist.imagelink %>" style="width: 80%;">
+    <% else %>
+      <img src="/assets/noimage.png" style="width: 80%;">
+    <% end %>
   </div>
-<% end %>
-<% if @artist.average_score.nan? %>
-  <% average_score = "-" %>
-<% else %>
-  <% average_score = @artist.average_score %>
-<% end %>
-<p>Score: <%= average_score %>/10 &emsp;
-  <% if current_user %>
-    <%= link_to "編集", edit_artist_path %>
-  <% end %>
-</p>
-<% if @artist.apple %>
-	<% if @artist.apple.length != 0  %>
-		<%= link_to "AppleMusic", @artist.apple, class: "btn-small pink lighten-2" %>
-	<% end %>
-<% end %>
-<% if @artist.spotify %>
-	<% if @artist.spotify.length != 0  %>
-		<%= link_to "Spotify", @artist.spotify, class: "btn-small light-green-text grey darken-3" %>
-	<% end %>
-<% end %>
-<% if @artist.bandcamp %>
-	<% if @artist.bandcamp.length != 0 %>
-		<%= link_to "Bandcamp", @artist.bandcamp, class: "btn-small light-blue darken-3" %>
-	<% end %>
-<% end %>
-<% if @artist.wikipedia %>
-	<% if @artist.wikipedia.length != 0 %>
-		<%= link_to "Wiki", @artist.wikipedia, class: "btn-small blue-grey lighten-5 black-text" %>
-	<% end %>
-<% end %>
-<br />
-<br />
+  <div class="col s6 l4">
+    <div>
+      <!-- a href="/artists"><p class="green-text">アーティスト</p></a-->
+      <h5><%= @artist.name %></h5>
+      <% if current_user %>
+        <div id="follow-artist-<%= @artist.id %>">
+          <%= render partial: "follow", locals: { artist: @artist } %>
+        </div>
+      <% end %>
+      <% if @artist.average_score.nan? %>
+        <% average_score = "-" %>
+      <% else %>
+        <% average_score = @artist.average_score %>
+      <% end %>
+      <p>Score: <%= average_score %>/10 &emsp;
+        <% if current_user %>
+          <%= link_to "編集", edit_artist_path %>
+        <% end %>
+      </p>
+    </div>
+    <div>
+			<!-- Modal Trigger -->
+			<a class="modal-trigger" href="#modal1" style="color: gray;"><i class="material-icons">info_outline</i></a>
+
+			<!-- Modal Structure -->
+			<div id="modal1" class="modal bottom-sheet">
+				<div class="modal-content">
+					<% if @artist.apple %>
+            <% if @artist.apple.length != 0  %>
+              <%= link_to "AppleMusic", @artist.apple, class: "btn-small pink lighten-2", style: "margin: 5px;" %>
+            <% end %>
+          <% end %>
+          <% if @artist.spotify %>
+            <% if @artist.spotify.length != 0  %>
+              <%= link_to "Spotify", @artist.spotify, class: "btn-small light-green-text grey darken-3", style: "margin: 5px" %>
+            <% end %>
+          <% end %>
+          <% if @artist.bandcamp %>
+            <% if @artist.bandcamp.length != 0 %>
+              <%= link_to "Bandcamp", @artist.bandcamp, class: "btn-small light-blue darken-3", style: "margin: 5px" %>
+            <% end %>
+          <% end %>
+          <% if @artist.wikipedia %>
+            <% if @artist.wikipedia.length != 0 %>
+              <%= link_to "Wiki", @artist.wikipedia, class: "btn-small blue-grey lighten-5 black-text" %>
+            <% end %>
+          <% end %>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>
 <div class="divider"></div>
 <div class="section">
   <div class="row">
@@ -61,7 +83,7 @@
             <% else %>
               <% average_score = album.average_score %>
             <% end %>
-            <small>レビュー数: <%= album.posts.count %> &emsp; Score: <%= average_score %>/10</small>
+            <small>レビュー数: <%= album.posts.count %> &emsp; スコア: <%= average_score %>/10</small>
           </div>
           <div class="divider"></div>
         <% end %>

@@ -1,44 +1,83 @@
 <% set_meta_tags title: "#{@album.name}/#{@artist.name}|オトハブ"  %>
 
-<h5><%= @album.name %>/<%= link_to @artist.name, "/artists/#{@artist.id}" %></h5>
-<% if current_user %>
-  <div id="follow-album-<%= @album.id %>">
-    <%= render partial: "follow", locals: { album: @album } %>
-  </div>
-<% end %>
-<% if @album.average_score.nan? %>
-	<% average_score = "-" %>
-<% else %>
-	<% average_score = @album.average_score %>
-<% end %>
-<p>Score: <%= average_score %>/10 &emsp;
-<% if current_user %>
-	<%= link_to "編集", "/artists/#{@artist.id}/albums/#{@album.id}/edit" %>
-<% end %>
-</p>
-<% if @album.apple %>
-	<% if @album.apple.length != 0 %>
-		<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height=300" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="<%= @album.apple.sub("music.apple.com","embed.music.apple.com") %>"></iframe>
+<div class="row">
+	<a href="/albums"><p>アルバム</p></a>
+	<div class="col s6 l4">
+		<% if @album.imagelink %>
+			<% if @album.imagelink.length != 0 %>
+      			<img class="materialboxed" src="<%= @album.imagelink %>" style="width: 80%;">
+			<% else %>
+				<img src="/assets/noimage.png" style="width: 80%;">
+			<% end %>
+		<% else %>
+			<img src="/assets/noimage.png" style="width: 80%;">
+		<% end %>
+	</div>
+	<div class="col s6 l4">
+		<div>
+			<h5><%= @album.name %>/<%= link_to @artist.name, "/artists/#{@artist.id}" %></h5>
+			<% if current_user %>
+			<div id="follow-album-<%= @album.id %>">
+				<%= render partial: "follow", locals: { album: @album } %>
+			</div>
+			<% end %>
+			<% if @album.average_score.nan? %>
+				<% average_score = "-" %>
+			<% else %>
+				<% average_score = @album.average_score %>
+			<% end %>
+			<p>Score: <%= average_score %>/10 &emsp;
+			<% if current_user %>
+				<%= link_to "編集", "/artists/#{@artist.id}/albums/#{@album.id}/edit" %>
+			<% end %>
+			</p>
+		</div>
+		<div>
+			<!-- Modal Trigger -->
+			<a class="modal-trigger" href="#modal1" style="color: gray;"><i class="material-icons">info_outline</i></a>
+
+			<!-- Modal Structure -->
+			<div id="modal1" class="modal bottom-sheet">
+				<div class="modal-content">
+					<% if @album.apple %>
+						<% if @album.apple.length != 0 %>
+							<%= link_to "Apple Music", @album.spotify, class: "btn-small pink lighten-2" %>
+						<% end %>
+					<% end %>
+					<% if @album.spotify %>
+						<% if @album.spotify.length != 0  %>
+							<%= link_to "Spotify", @album.spotify, class: "btn-small light-green-text grey darken-3" %>
+						<% end %>
+					<% end %>
+					<% if @album.bandcamp %>
+						<% if @album.bandcamp.length != 0 %>
+							<%= link_to "Bandcamp", @album.bandcamp, class: "btn-small light-blue darken-3" %>
+						<% end %>
+					<% end %>
+					<% if @album.wikipedia %>
+						<% if @album.wikipedia.length != 0 %>
+							<%= link_to "Wiki", @album.wikipedia, class: "btn-small blue-grey lighten-5 black-text" %>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<% if @album.apple != "" %>
+		<ul class="collapsible">
+			<li>
+			<div class="collapsible-header"><i class="material-icons">expand_more</i>曲目を見る (Apple Music)</div>
+			<div class="collapsible-body" style="padding: 8px;">
+				<% if @album.apple.length != 0 %>
+					<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height=400" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="<%= @album.apple.sub("music.apple.com","embed.music.apple.com") %>"></iframe>
+				<% end %>
+			</div>
+			</li>
+		</ul>
 	<% end %>
-<% end %>
-<br />
-<% if @album.spotify %>
-	<% if @album.spotify.length != 0  %>
-		<%= link_to "Spotify", @album.spotify, class: "btn-small light-green-text grey darken-3" %>
-	<% end %>
-<% end %>
-<% if @album.bandcamp %>
-	<% if @album.bandcamp.length != 0 %>
-		<%= link_to "Bandcamp", @album.bandcamp, class: "btn-small light-blue darken-3" %>
-	<% end %>
-<% end %>
-<% if @album.wikipedia %>
-	<% if @album.wikipedia.length != 0 %>
-		<%= link_to "Wiki", @album.wikipedia, class: "btn-small blue-grey lighten-5 black-text" %>
-	<% end %>
-<% end %>
-<br />
-<br />
+</div>
 <div class="divider"></div>
 
 <h6>このアルバムの投稿 &emsp;

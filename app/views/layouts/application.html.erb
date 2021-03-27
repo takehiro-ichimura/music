@@ -17,7 +17,6 @@
 
 <html>
   <head>
-    <script data-ad-client="ca-pub-6732392420173461" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173169828-1"></script>
     <script>
@@ -38,79 +37,79 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <style>
-  body {
-    word-break: break-all;
-  }
-  .page-footer {
-    margin-top: 30px;
-  }
-  }
-.card {
-    margin: 1rem 0 1rem 0;
-  }
-  .card .card-content {
-    padding-top: 8px;
-    padding-right: 14px;
-    padding-bottom: 8px;
-    padding-left: 14px;
-  }
-  .card .card-action {
-    padding: 5px 10px;
-  }
-  .card .card-content .card-title {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    line-height: 18px;
-  }
-  .card .card-title {
-    font-size: 17px;
+    body {
+      word-break: break-all;
+    }
+    .page-footer {
+      margin-top: 30px;
+    }
+    }
+    .card {
+      margin: 1rem 0 1rem 0;
+    }
+    .card .card-content {
+      padding-top: 8px;
+      padding-right: 14px;
+      padding-bottom: 8px;
+      padding-left: 14px;
+    }
+    .card .card-action {
+      padding: 5px 10px;
+    }
+    .card .card-content .card-title {
+      margin-top: 4px;
+      margin-bottom: 4px;
+      line-height: 18px;
+    }
+    .card .card-title {
+      font-size: 17px;
 
-}
-  .section {
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-  }
-  .card .card-action a:not(.btn):not(.btn-small):not(.btn-large):not(.btn-large):not(.btn-floating) {
-    margin-right: 13px;
-  }
-  .dropdown-content li > a, .dropdown-content li > span {
-    font-size: 13px;
-    color: #00C853;
-    display: block;
-    line-height: 20px;
-    padding: 14px 16px;
-  }
-  .mini-btn {
-    border-radius: 2px;
-    height: 20px;
-    line-height: 20px;
-    padding: 0 5px;
-  }
-  .row .col {
-    float: left;
-    box-sizing: border-box;
-    padding: 0 0rem;
-    min-height: 1px;
-  }
-  .bitsmall {
-    font-size: 90%;
-  }
-  .bitlarge {
-    font-size: 120%;
-  }
-  .linkdiv {
-    position: relative;
-    z-index: 1; /* 必要であればリンク要素の重なりのベース順序指定 */
-  }
-  .linkdiv a {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      text-indent:-999px;
-      z-index: 2; /* 必要であればリンク要素の重なりのベース順序指定 */
-  }
+    }
+    .section {
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+    }
+    .card .card-action a:not(.btn):not(.btn-small):not(.btn-large):not(.btn-large):not(.btn-floating) {
+      margin-right: 13px;
+    }
+    .dropdown-content li > a, .dropdown-content li > span {
+      font-size: 13px;
+      color: #00C853;
+      display: block;
+      line-height: 20px;
+      padding: 14px 16px;
+    }
+    .mini-btn {
+      border-radius: 2px;
+      height: 20px;
+      line-height: 20px;
+      padding: 0 5px;
+    }
+    .row .col {
+      float: left;
+      box-sizing: border-box;
+      padding: 0 0rem;
+      min-height: 1px;
+    }
+    .bitsmall {
+      font-size: 90%;
+    }
+    .bitlarge {
+      font-size: 120%;
+    }
+    .linkdiv {
+      position: relative;
+      z-index: 1; /* 必要であればリンク要素の重なりのベース順序指定 */
+    }
+    .linkdiv a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-indent:-999px;
+        z-index: 2; /* 必要であればリンク要素の重なりのベース順序指定 */
+    }
   </style>
   <script>
     $(".dropdown-trigger").dropdown();
@@ -192,7 +191,18 @@
 
       return false;
   });
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  })
 
+  $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
+  
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+  
   $(function() {
   $('#js-copybtn').on('click', function(){
     // コピーする文章の取得

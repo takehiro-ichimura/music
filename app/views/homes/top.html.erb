@@ -3,12 +3,12 @@
   <p><a href="/users/sign_in">ログイン</a>すると誰でもレビューできるサイトです</p>
 <% end %>
 <div class="center">
-  <%= link_to "アーティスト", "/artists", class:"btn" %>
-  <%= link_to "アルバム", "/albums", class:"btn" %>
-  <%= link_to "新着投稿", "/posts", class:"btn" %>
+  <%= link_to "アーティストから探す", "/artists", class:"btn", style:"margin: 2px;" %>
+  <%= link_to "アルバムから探す", "/albums", class:"btn", style:"margin: 2px;" %>
+  <%= link_to "新着投稿", "/posts", class:"btn", style:"margin: 2px;" %>
 </div>
-<h5>PICKUP REVIEW</h5>
 <div class="row">
+  <h5>PICKUP REVIEW</h5>
   <% count = 10 %>
   <% @posts.each do |post| %>
     <% count -= 1 %>
