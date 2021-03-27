@@ -73,17 +73,32 @@
         <div class="divider"></div>
         <% @artist.albums.each do |album| %>
           <div class="section">
-            <h6>
-              <a href=<%=artist_album_path(@artist, album)%> class="collection-item">
-                <%= album.name %>
-              </a>
-            </h6>
-            <% if album.average_score.nan? %>
-              <% average_score = "-" %>
-            <% else %>
-              <% average_score = album.average_score %>
-            <% end %>
-            <small>レビュー数: <%= album.posts.count %> &emsp; スコア: <%= average_score %>/10</small>
+            <div class="row" style="margin-bottom: 0px;">
+              <div class="col s4">
+                <% if album.imagelink %>
+                  <% if album.imagelink.length != 0 %>
+                      <img src="<%= album.imagelink %>" style="width: 80%;">
+                  <% else %>
+                    <img src="/assets/noimage.png" style="width: 80%;">
+                  <% end %>
+                <% else %>
+                  <img src="/assets/noimage.png" style="width: 80%;">
+                <% end %>
+              </div>
+              <div class="col s8">
+                <h6>
+                  <a href=<%=artist_album_path(@artist, album)%> class="collection-item">
+                  <%= album.name %>
+                  </a>
+                </h6>
+                <% if album.average_score.nan? %>
+                  <% average_score = "-" %>
+                <% else %>
+                  <% average_score = album.average_score %>
+                <% end %>
+                <small>投稿数: <%= album.posts.count %> &emsp; スコア: <%= average_score %>/10</small>
+              </div>
+            </div>
           </div>
           <div class="divider"></div>
         <% end %>
