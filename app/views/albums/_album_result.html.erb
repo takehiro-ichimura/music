@@ -18,19 +18,21 @@
   <div class="section">
     <div class="row" style="margin-bottom: 0px;">
       <div class="col s4">
-        <div class="center">
-          <% if album.imagelink %>
-            <% if album.imagelink.length != 0 %>
-                  <img class="artist-img" src="<%= album.imagelink %>">
+        <div class="img-parent">
+          <div class="img-child center">
+            <% if album.imagelink %>
+              <% if album.imagelink.length != 0 %>
+                    <img class="artist-img" src="<%= album.imagelink %>">
+              <% else %>
+                <img class="artist-img" src="/assets/noimage.png">
+              <% end %>
             <% else %>
               <img class="artist-img" src="/assets/noimage.png">
             <% end %>
-          <% else %>
-            <img class="artist-img" src="/assets/noimage.png">
-          <% end %>
+          </div>
         </div>
       </div>
-      <div class="col s8">
+      <div class="col s8" style="padding-left: 3px;">
         <h6><%= link_to album.name, artist_album_path(artist, album) %> / <%= link_to artist.name, artist %></h6><small>記事数: <%= album.posts.count %> &nbsp; Score: <%= average_score %>/10</small>
       </div>
     </div>
