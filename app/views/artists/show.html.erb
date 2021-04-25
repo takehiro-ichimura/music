@@ -79,12 +79,12 @@
                   <div class="img-child center">
                     <% if album.imagelink %>
                       <% if album.imagelink.length != 0 %>
-                          <img src="<%= album.imagelink %>">
+                          <img class="artist-img" src="<%= album.imagelink %>">
                       <% else %>
-                        <img src="/assets/noimage.png">
+                        <img class="artist-img" src="/assets/noimage.png">
                       <% end %>
                     <% else %>
-                      <img src="/assets/noimage.png">
+                      <img class="artist-img" src="/assets/noimage.png">
                     <% end %>
                   </div>
                 </div>
