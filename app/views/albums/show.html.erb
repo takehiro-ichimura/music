@@ -2,7 +2,7 @@
 
 <div class="row">
 	<a href="/albums"><p>アルバム</p></a>
-	<div class="col s6 l4">
+	<div class="col s6 l4 artist-show-img-container">
 		<% if @album.imagelink %>
 			<% if @album.imagelink.length != 0 %>
       			<img class="materialboxed" src="<%= @album.imagelink %>" style="width: 80%;">

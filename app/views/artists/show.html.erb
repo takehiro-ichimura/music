@@ -1,7 +1,7 @@
 <% set_meta_tags title: "#{@artist.name}|オトハブ"  %>
 <div class="row">
   <a href="/artists"><p>アーティスト</p></a>
-  <div class="col s6 l4 center">
+  <div class="col s6 l4 center artist-show-img-container">
     <% if @artist.imagelink %>
       <img class="materialboxed" src="<%= @artist.imagelink %>" style="width: 80%;">
     <% else %>
@@ -75,15 +75,19 @@
           <div class="section">
             <div class="row" style="margin-bottom: 0px;">
               <div class="col s4">
-                <% if album.imagelink %>
-                  <% if album.imagelink.length != 0 %>
-                      <img src="<%= album.imagelink %>" style="width: 80%;">
-                  <% else %>
-                    <img src="/assets/noimage.png" style="width: 80%;">
-                  <% end %>
-                <% else %>
-                  <img src="/assets/noimage.png" style="width: 80%;">
-                <% end %>
+                <div class="img-parent">
+                  <div class="img-child center">
+                    <% if album.imagelink %>
+                      <% if album.imagelink.length != 0 %>
+                          <img src="<%= album.imagelink %>">
+                      <% else %>
+                        <img src="/assets/noimage.png">
+                      <% end %>
+                    <% else %>
+                      <img src="/assets/noimage.png">
+                    <% end %>
+                  </div>
+                </div>
               </div>
               <div class="col s8">
                 <h6>
