@@ -18,15 +18,17 @@
   <div class="section">
     <div class="row" style="margin-bottom: 0px;">
       <div class="col s4">
-        <% if artist.imagelink %>
-          <% if artist.imagelink.length != 0 %>
-                <img src="<%= artist.imagelink %>" style="width: 80%;">
+        <div class="center">
+          <% if artist.imagelink %>
+            <% if artist.imagelink.length != 0 %>
+                  <img class="artist-img" src="<%= artist.imagelink %>">
+            <% else %>
+              <img class="artist-img" src="/assets/noimage.png">
+            <% end %>
           <% else %>
-            <img src="/assets/noimage.png" style="width: 80%;">
+            <img class="artist-img" src="/assets/noimage.png">
           <% end %>
-        <% else %>
-          <img src="/assets/noimage.png" style="width: 80%;">
-        <% end %>
+        </div>
       </div>
       <div class="col s8">
         <h6><%= link_to artist.name, artist %></h6><small>記事数: <%= artist.posts.count %> &nbsp; スコア: <%= average_score %>/10</small>
