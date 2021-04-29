@@ -65,17 +65,19 @@
 	</div>
 </div>
 <div>
-	<% if @album.apple != "" %>
-		<ul class="collapsible">
-			<li>
-			<div class="collapsible-header"><i class="material-icons">expand_more</i>曲目を見る (Apple Music)</div>
-			<div class="collapsible-body" style="padding: 8px;">
-				<% if @album.apple.length != 0 %>
-					<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height=400" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="<%= @album.apple.sub("music.apple.com","embed.music.apple.com") %>"></iframe>
-				<% end %>
-			</div>
-			</li>
-		</ul>
+	<% if @album.apple %>
+		<% if @album.apple.length != 0 %>
+			<ul class="collapsible">
+				<li>
+				<div class="collapsible-header"><i class="material-icons">expand_more</i>曲目を見る (Apple Music)</div>
+				<div class="collapsible-body" style="padding: 8px;">
+					<% if @album.apple.length != 0 %>
+						<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height=400" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="<%= @album.apple.sub("music.apple.com","embed.music.apple.com") %>"></iframe>
+					<% end %>
+				</div>
+				</li>
+			</ul>
+		<% end %>
 	<% end %>
 </div>
 <div class="divider"></div>
